@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
-import { Pair, JSBI } from '@uniswap/sdk'
+import { Pair, JSBI } from 'constants/uniswap'
 import { Link } from 'react-router-dom'
 import { SwapPoolTabs } from '../../components/NavigationTabs'
 
@@ -123,6 +123,15 @@ export default function Pool() {
     )
   })
 
+  const { chainId } = useActiveWeb3React()
+
+  let pairInitialParam = "/create/ONE"
+  let liquidityInitialParam = "/add/ONE"
+  if (chainId !== 1666700000) {
+    pairInitialParam = "/create/ONE"
+    liquidityInitialParam = "/add/ONE"
+  }
+
   return (
     <>
       <PageWrapper>
@@ -162,7 +171,7 @@ export default function Pool() {
                 </TYPE.mediumHeader>
               </HideSmall>
               <ButtonRow>
-                <ResponsiveButtonSecondary as={Link} padding="6px 8px" to="/create/ETH">
+                <ResponsiveButtonSecondary as={Link} padding="6px 8px" to={pairInitialParam}>
                   Create a pair
                 </ResponsiveButtonSecondary>
                 <ResponsiveButtonPrimary
@@ -170,7 +179,7 @@ export default function Pool() {
                   as={Link}
                   padding="6px 8px"
                   borderRadius="12px"
-                  to="/add/ETH"
+                  to={liquidityInitialParam}
                 >
                   <Text fontWeight={500} fontSize={16}>
                     Add Liquidity

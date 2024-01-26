@@ -85,5 +85,5 @@ ReactDOM.render(
 
 serviceWorkerRegistration.unregister()
 
-console.log = function () {};
+// console.log = function () {};
 console.warn = function () {};

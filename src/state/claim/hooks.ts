@@ -1,5 +1,5 @@
 import { UNI } from './../../constants/index'
-import { TokenAmount, JSBI, ChainId } from '@uniswap/sdk'
+import { TokenAmount, JSBI, ChainId } from 'constants/uniswap'
 import { TransactionResponse } from '@ethersproject/providers'
 import { useEffect, useState } from 'react'
 import { useActiveWeb3React } from '../../hooks'
@@ -30,6 +30,7 @@ function fetchClaim(account: string, chainId: ChainId): Promise<UserClaimData | 
   return (CLAIM_PROMISES[key] =
     CLAIM_PROMISES[key] ??
     fetch('https://merkle-drop-1.uniswap.workers.dev/', {
+      mode: 'no-cors',
       body: JSON.stringify({ chainId, address: formatted }),
       headers: {
         'Content-Type': 'application/json',
@@ -80,10 +81,11 @@ export function useUserUnclaimedAmount(account: string | null | undefined): Toke
 
   const uni = chainId ? UNI[chainId] : undefined
   if (!uni) return undefined
-  if (!canClaim || !userClaimData) {
-    return new TokenAmount(uni, JSBI.BigInt(0))
-  }
-  return new TokenAmount(uni, JSBI.BigInt(userClaimData.amount))
+  return undefined
+  // if (!canClaim || !userClaimData) {
+  //   return new TokenAmount(uni, JSBI.BigInt(0))
+  // }
+  // return new TokenAmount(uni, JSBI.BigInt(userClaimData.amount))
 }
 
 export function useClaimCallback(
@@ -100,7 +102,7 @@ export function useClaimCallback(
   const addTransaction = useTransactionAdder()
   const distributorContract = useMerkleDistributorContract()
 
-  const claimCallback = async function() {
+  const claimCallback = async function () {
     if (!claimData || !account || !library || !chainId || !distributorContract) return
 
     const args = [claimData.index, account, claimData.amount, claimData.proof]

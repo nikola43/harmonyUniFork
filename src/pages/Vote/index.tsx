@@ -15,7 +15,7 @@ import DelegateModal from '../../components/vote/DelegateModal'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import { useActiveWeb3React } from '../../hooks'
 import { UNI, ZERO_ADDRESS } from '../../constants'
-import { JSBI, TokenAmount, ChainId } from '@uniswap/sdk'
+import { JSBI, TokenAmount, ChainId } from 'constants/uniswap'
 import { shortenAddress, getEtherscanLink } from '../../utils'
 import Loader from '../../components/Loader'
 import FormattedCurrencyAmount from '../../components/FormattedCurrencyAmount'
@@ -114,13 +114,14 @@ export default function Vote() {
 
   // user data
   const availableVotes: TokenAmount | undefined = useUserVotes()
-  const uniBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, chainId ? UNI[chainId] : undefined)
+  // const uniBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, chainId ? UNI[chainId] : undefined)
   const userDelegatee: string | undefined = useUserDelegatee()
 
   // show delegation option if they have have a balance, but have not delegated
-  const showUnlockVoting = Boolean(
-    uniBalance && JSBI.notEqual(uniBalance.raw, JSBI.BigInt(0)) && userDelegatee === ZERO_ADDRESS
-  )
+  // const showUnlockVoting = Boolean(
+  //   uniBalance && JSBI.notEqual(uniBalance.raw, JSBI.BigInt(0)) && userDelegatee === ZERO_ADDRESS
+  // )
+  const showUnlockVoting = false
 
   return (
     <PageWrapper gap="lg" justify="center">
@@ -174,14 +175,16 @@ export default function Vote() {
             <TYPE.body fontWeight={500} mr="6px">
               <FormattedCurrencyAmount currencyAmount={availableVotes} /> Votes
             </TYPE.body>
-          ) : uniBalance &&
-            userDelegatee &&
-            userDelegatee !== ZERO_ADDRESS &&
-            JSBI.notEqual(JSBI.BigInt(0), uniBalance?.raw) ? (
-            <TYPE.body fontWeight={500} mr="6px">
-              <FormattedCurrencyAmount currencyAmount={uniBalance} /> Votes
-            </TYPE.body>
-          ) : (
+          )
+          //  : uniBalance &&
+          //   userDelegatee &&
+          //   userDelegatee !== ZERO_ADDRESS &&
+          //   JSBI.notEqual(JSBI.BigInt(0), uniBalance?.raw) ? (
+          //   <TYPE.body fontWeight={500} mr="6px">
+          //     <FormattedCurrencyAmount currencyAmount={uniBalance} /> Votes
+          //   </TYPE.body>
+          // ) 
+          : (
             ''
           )}
         </WrapSmall>
