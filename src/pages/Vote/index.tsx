@@ -12,9 +12,9 @@ import { darken } from 'polished'
 import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
 import { useAllProposalData, ProposalData, useUserVotes, useUserDelegatee } from '../../state/governance/hooks'
 import DelegateModal from '../../components/vote/DelegateModal'
-import { useTokenBalance } from '../../state/wallet/hooks'
+// import { useTokenBalance } from '../../state/wallet/hooks'
 import { useActiveWeb3React } from '../../hooks'
-import { UNI, ZERO_ADDRESS } from '../../constants'
+import { ZERO_ADDRESS } from '../../constants'
 import { JSBI, TokenAmount, ChainId } from 'constants/uniswap'
 import { shortenAddress, getEtherscanLink } from '../../utils'
 import Loader from '../../components/Loader'
@@ -103,7 +103,7 @@ const EmptyProposals = styled.div`
 `
 
 export default function Vote() {
-  const { account, chainId } = useActiveWeb3React()
+  const { account } = useActiveWeb3React()
 
   // toggle for showing delegation modal
   const showDelegateModal = useModalOpen(ApplicationModal.DELEGATE)
@@ -176,17 +176,17 @@ export default function Vote() {
               <FormattedCurrencyAmount currencyAmount={availableVotes} /> Votes
             </TYPE.body>
           )
-          //  : uniBalance &&
-          //   userDelegatee &&
-          //   userDelegatee !== ZERO_ADDRESS &&
-          //   JSBI.notEqual(JSBI.BigInt(0), uniBalance?.raw) ? (
-          //   <TYPE.body fontWeight={500} mr="6px">
-          //     <FormattedCurrencyAmount currencyAmount={uniBalance} /> Votes
-          //   </TYPE.body>
-          // ) 
-          : (
-            ''
-          )}
+            //  : uniBalance &&
+            //   userDelegatee &&
+            //   userDelegatee !== ZERO_ADDRESS &&
+            //   JSBI.notEqual(JSBI.BigInt(0), uniBalance?.raw) ? (
+            //   <TYPE.body fontWeight={500} mr="6px">
+            //     <FormattedCurrencyAmount currencyAmount={uniBalance} /> Votes
+            //   </TYPE.body>
+            // ) 
+            : (
+              ''
+            )}
         </WrapSmall>
         {!showUnlockVoting && (
           <RowBetween>

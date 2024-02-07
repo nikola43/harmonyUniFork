@@ -229,7 +229,7 @@ const StyledNavLink = styled(NavLink).attrs({
 
 const StyledExternalLink = styled(ExternalLink).attrs({
   activeClassName
-})<{ isActive?: boolean }>`
+}) <{ isActive?: boolean }>`
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: left;
   border-radius: 3rem;
@@ -293,7 +293,7 @@ const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
   // [ChainId.GÖRLI]: 'Görli',
   // [ChainId.KOVAN]: 'Kovan',
   // [ChainId.HARMONY]: 'Harmony',
-  [ChainId.MAINNET]: 'Harmony',  
+  [ChainId.MAINNET]: 'Harmony',
   [ChainId.TESTNET]: 'Harmony Testnet',
 }
 
@@ -348,7 +348,12 @@ export default function Header() {
           >
             {t('pool')}
           </StyledNavLink>
-          <StyledNavLink id={`stake-nav-link`} to={'/uni'}>
+
+          <StyledNavLink id={`lock-nav-link`} to={'/lock'}>
+            Lock
+          </StyledNavLink>
+
+          {/* <StyledNavLink id={`stake-nav-link`} to={'/uni'}>
             UNI
           </StyledNavLink>
           <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
@@ -356,7 +361,7 @@ export default function Header() {
           </StyledNavLink>
           <StyledExternalLink id={`stake-nav-link`} href={'https://uniswap.info'}>
             Charts <span style={{ fontSize: '11px' }}>↗</span>
-          </StyledExternalLink>
+          </StyledExternalLink> */}
         </HeaderLinks>
       </HeaderRow>
       <HeaderControls>
