@@ -1,19 +1,19 @@
 import { ChainId, TokenAmount } from 'constants/uniswap'
-import React, { useMemo } from 'react'
+import React from 'react'
 import { X } from 'react-feather'
 import styled from 'styled-components'
 import tokenLogo from '../../assets/images/token-logo.png'
 import { UNI } from '../../constants'
 // import { useTotalSupply } from '../../data/TotalSupply'
 import { useActiveWeb3React } from '../../hooks'
-import { useMerkleDistributorContract } from '../../hooks/useContract'
-import useCurrentBlockTimestamp from '../../hooks/useCurrentBlockTimestamp'
+// import { useMerkleDistributorContract } from '../../hooks/useContract'
+// import useCurrentBlockTimestamp from '../../hooks/useCurrentBlockTimestamp'
 // import { useTotalUniEarned } from '../../state/stake/hooks'
-import { useAggregateUniBalance, useTokenBalance } from '../../state/wallet/hooks'
+import { useAggregateUniBalance } from '../../state/wallet/hooks'
 // import { ExternalLink, StyledInternalLink, TYPE, UniTokenAnimated } from '../../theme'
 import { ExternalLink, TYPE, UniTokenAnimated } from '../../theme'
-import { computeUniCirculation } from '../../utils/computeUniCirculation'
-import useUSDCPrice from '../../utils/useUSDCPrice'
+// import { computeUniCirculation } from '../../utils/computeUniCirculation'
+// import useUSDCPrice from '../../utils/useUSDCPrice'
 import { AutoColumn } from '../Column'
 import { RowBetween } from '../Row'
 import { Break, CardBGImage, CardNoise, CardSection, DataCard } from '../earn/styled'
@@ -52,7 +52,7 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
   // const totalSupply: TokenAmount | undefined = useTotalSupply(uni)
   const totalSupply: TokenAmount | undefined = undefined
   // const uniPrice = useUSDCPrice(uni)
-  const blockTimestamp = useCurrentBlockTimestamp()
+  // const blockTimestamp = useCurrentBlockTimestamp()
   // const unclaimedUni = useTokenBalance(useMerkleDistributorContract()?.address, uni)
   // const circulation: TokenAmount | undefined = useMemo(
   //   () =>

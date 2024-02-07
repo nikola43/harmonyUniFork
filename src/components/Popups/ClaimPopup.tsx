@@ -1,4 +1,4 @@
-import { TokenAmount } from 'constants/uniswap'
+// import { TokenAmount } from 'constants/uniswap'
 import React, { useEffect } from 'react'
 import { X } from 'react-feather'
 import styled, { keyframes } from 'styled-components'
@@ -13,7 +13,7 @@ import {
   useToggleShowClaimPopup
 } from '../../state/application/hooks'
 
-import { useUserHasAvailableClaim, useUserUnclaimedAmount } from '../../state/claim/hooks'
+import { useUserHasAvailableClaim } from '../../state/claim/hooks'
 import { TYPE } from '../../theme'
 import { AutoColumn } from '../Column'
 import { CardBGImage, CardNoise } from '../earn/styled'
@@ -65,7 +65,7 @@ export default function ClaimPopup() {
 
   // const userHasAvailableclaim = useUserHasAvailableClaim()
   const userHasAvailableclaim: boolean = useUserHasAvailableClaim(account)
-  const unclaimedAmount: TokenAmount | undefined = useUserUnclaimedAmount(account)
+  // const unclaimedAmount: TokenAmount | undefined = useUserUnclaimedAmount(account)
 
   // listen for available claim and show popup if needed
   useEffect(() => {

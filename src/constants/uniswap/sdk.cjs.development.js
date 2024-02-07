@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -79,6 +80,7 @@ function _createClass(Constructor, protoProps, staticProps) {
 }
 
 function _extends() {
+  // eslint-disable-next-line
   _extends = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
@@ -103,6 +105,7 @@ function _inheritsLoose(subClass, superClass) {
 }
 
 function _getPrototypeOf(o) {
+  // eslint-disable-next-line
   _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
     return o.__proto__ || Object.getPrototypeOf(o);
   };
@@ -110,6 +113,7 @@ function _getPrototypeOf(o) {
 }
 
 function _setPrototypeOf(o, p) {
+  // eslint-disable-next-line
   _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
     o.__proto__ = p;
     return o;
@@ -133,8 +137,10 @@ function _isNativeReflectConstruct() {
 
 function _construct(Parent, args, Class) {
   if (_isNativeReflectConstruct()) {
+    // eslint-disable-next-line
     _construct = Reflect.construct;
   } else {
+    // eslint-disable-next-line
     _construct = function _construct(Parent, args, Class) {
       var a = [null];
       a.push.apply(a, args);
@@ -155,6 +161,7 @@ function _isNativeFunction(fn) {
 function _wrapNativeSuper(Class) {
   var _cache = typeof Map === "function" ? new Map() : undefined;
 
+  // eslint-disable-next-line
   _wrapNativeSuper = function _wrapNativeSuper(Class) {
     if (Class === null || !_isNativeFunction(Class)) return Class;
 
@@ -215,6 +222,7 @@ function _createForOfIteratorHelperLoose(o, allowArrayLike) {
   var it;
 
   if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
+    // eslint-disable-next-line
     if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
       if (it) o = it;
       var i = 0;
@@ -967,7 +975,9 @@ var Route = /*#__PURE__*/function () {
     !pairs.every(function (pair) {
       return pair.chainId === pairs[0].chainId;
     }) ? invariant(false, 'CHAIN_IDS') : void 0;
+    // eslint-disable-next-line
     !(input instanceof Token && pairs[0].involvesToken(input) || input === ETHER && pairs[0].involvesToken(WETH[pairs[0].chainId])) ? invariant(false, 'INPUT') : void 0;
+    // eslint-disable-next-line
     !(typeof output === 'undefined' || output instanceof Token && pairs[pairs.length - 1].involvesToken(output) || output === ETHER && pairs[pairs.length - 1].involvesToken(WETH[pairs[0].chainId])) ? invariant(false, 'OUTPUT') : void 0;
     var path = [input instanceof Token ? input : WETH[pairs[0].chainId]];
 
@@ -1457,6 +1467,9 @@ var Router = /*#__PURE__*/function () {
         }
 
         break;
+
+        default:
+          throw new Error('Invalid TradeType');
     }
 
     return {
