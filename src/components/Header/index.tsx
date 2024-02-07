@@ -1,5 +1,5 @@
 import { ChainId, TokenAmount } from 'constants/uniswap'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Text } from 'rebass'
 import { NavLink } from 'react-router-dom'
 import { darken } from 'polished'
@@ -17,7 +17,7 @@ import { CountUp } from 'use-count-up'
 import { TYPE } from '../../theme'
 
 import { YellowCard } from '../Card'
-// import { Moon, Sun } from 'react-feather'
+import { Moon, Sun } from 'react-feather'
 import Menu from '../Menu'
 
 import Row, { RowFixed } from '../Row'
@@ -302,7 +302,7 @@ export default function Header() {
   const { t } = useTranslation()
 
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
-  const [isDark] = useDarkModeManager()
+  // const [isDark] = useDarkModeManager()
   const [darkMode, toggleDarkMode] = useDarkModeManager()
 
   const toggleClaimModal = useToggleSelfClaimModal()
@@ -319,11 +319,11 @@ export default function Header() {
   const countUpValue = aggregateBalance?.toFixed(0) ?? '0'
   const countUpValuePrevious = usePrevious(countUpValue) ?? '0'
 
-  useEffect(() => {
-    if (isDark) {
-      toggleDarkMode()
-    }
-  })
+  // useEffect(() => {
+  //   if (isDark) {
+  //     toggleDarkMode()
+  //   }
+  // })
 
   return (
     <HeaderFrame>
@@ -423,9 +423,9 @@ export default function Header() {
           </AccountElement>
         </HeaderElement>
         <HeaderElementWrap>
-          {/* <StyledMenuButton onClick={() => toggleDarkMode()}>
+          <StyledMenuButton onClick={() => toggleDarkMode()}>
             {darkMode ? <Moon size={20} /> : <Sun size={20} />}
-          </StyledMenuButton> */}
+          </StyledMenuButton>
           <Menu />
         </HeaderElementWrap>
       </HeaderControls>
