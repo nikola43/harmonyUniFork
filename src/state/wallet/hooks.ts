@@ -7,8 +7,8 @@ import { useActiveWeb3React } from '../../hooks'
 import { useMulticallContract } from '../../hooks/useContract'
 import { isAddress } from '../../utils'
 import { useSingleContractMultipleData, useMultipleContractSingleData } from '../multicall/hooks'
-import { useUserUnclaimedAmount } from '../claim/hooks'
-import { useTotalUniEarned } from '../stake/hooks'
+// import { useUserUnclaimedAmount } from '../claim/hooks'
+// import { useTotalUniEarned } from '../stake/hooks'
 
 /**
  * Returns a map of the given addresses to their eventually consistent ETH balances.
@@ -136,7 +136,8 @@ export function useAllTokenBalances(): { [tokenAddress: string]: TokenAmount | u
 
 // get the total owned, unclaimed, and unharvested UNI for account
 export function useAggregateUniBalance(): TokenAmount | undefined {
-  const { account, chainId } = useActiveWeb3React()
+  // const { account, chainId } = useActiveWeb3React()
+  const { chainId } = useActiveWeb3React()
 
   const uni = chainId ? UNI[chainId] : undefined
 

@@ -12,6 +12,7 @@ export enum WrapType {
   UNWRAP
 }
 
+
 const NOT_APPLICABLE = { wrapType: WrapType.NOT_APPLICABLE }
 /**
  * Given the selected input and output currency, return a wrap callback

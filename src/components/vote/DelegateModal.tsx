@@ -12,8 +12,8 @@ import AddressInputPanel from '../AddressInputPanel'
 import { isAddress } from 'ethers/lib/utils'
 import useENS from '../../hooks/useENS'
 import { useDelegateCallback } from '../../state/governance/hooks'
-import { useTokenBalance } from '../../state/wallet/hooks'
-import { UNI } from '../../constants'
+// import { useTokenBalance } from '../../state/wallet/hooks'
+// import { UNI } from '../../constants'
 import { LoadingView, SubmittedView } from '../ModalViews'
 
 const ContentWrapper = styled(AutoColumn)`
@@ -40,7 +40,7 @@ interface VoteModalProps {
 }
 
 export default function DelegateModal({ isOpen, onDismiss, title }: VoteModalProps) {
-  const { account, chainId } = useActiveWeb3React()
+  const { account } = useActiveWeb3React()
 
   // state for delegate input
   const [usingDelegate, setUsingDelegate] = useState(false)

@@ -182,8 +182,8 @@ export function useUserVotesAsOfBlock(block: number | undefined): TokenAmount | 
 }
 
 export function useDelegateCallback(): (delegatee: string | undefined) => undefined | Promise<string> {
-  const { account, chainId, library } = useActiveWeb3React()
-  const addTransaction = useTransactionAdder()
+  // const { account, chainId, library } = useActiveWeb3React()
+  // const addTransaction = useTransactionAdder()
 
   // const uniContract = useUniContract()
 
@@ -205,7 +205,7 @@ export function useDelegateCallback(): (delegatee: string | undefined) => undefi
       // })
     },
     // [account, addTransaction, chainId, library, uniContract]
-    [account, addTransaction, chainId, library]
+    []
   )
 }
 

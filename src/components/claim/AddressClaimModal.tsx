@@ -6,7 +6,7 @@ import { DataCard, CardSection, Break } from '../earn/styled'
 import { RowBetween } from '../Row'
 import { TYPE, ExternalLink, CloseIcon, CustomLightSpinner, UniTokenAnimated } from '../../theme'
 import { ButtonPrimary } from '../Button'
-import { useClaimCallback, useUserUnclaimedAmount, useUserHasAvailableClaim } from '../../state/claim/hooks'
+import { useClaimCallback, useUserHasAvailableClaim } from '../../state/claim/hooks'
 import tokenLogo from '../../assets/images/token-logo.png'
 import Circle from '../../assets/images/blue-loader.svg'
 import { Text } from 'rebass'
@@ -17,7 +17,7 @@ import { isAddress } from 'ethers/lib/utils'
 import Confetti from '../Confetti'
 import { CardNoise, CardBGImage, CardBGImageSmaller } from '../earn/styled'
 import { useIsTransactionPending } from '../../state/transactions/hooks'
-import { TokenAmount } from 'constants/uniswap'
+// import { TokenAmount } from 'constants/uniswap'
 import { getEtherscanLink, shortenAddress } from '../../utils'
 
 const ContentWrapper = styled(AutoColumn)`
@@ -59,7 +59,7 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
 
   // monitor the status of the claim from contracts and txns
   const { claimCallback } = useClaimCallback(parsedAddress)
-  const unclaimedAmount: TokenAmount | undefined = useUserUnclaimedAmount(parsedAddress)
+  // const unclaimedAmount: TokenAmount | undefined = useUserUnclaimedAmount(parsedAddress)
 
   // check if the user has something available
   const hasAvailableClaim = useUserHasAvailableClaim(parsedAddress)

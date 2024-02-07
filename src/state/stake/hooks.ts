@@ -3,11 +3,11 @@ import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, Pair } from 'constan
 import { useMemo } from 'react'
 // import { DAI, UNI, USDC, USDT, WBTC } from '../../constants'
 import { UNI } from '../../constants'
-import { STAKING_REWARDS_INTERFACE } from '../../constants/abis/staking-rewards'
+// import { STAKING_REWARDS_INTERFACE } from '../../constants/abis/staking-rewards'
 import { useActiveWeb3React } from '../../hooks'
-import { NEVER_RELOAD, useMultipleContractSingleData } from '../multicall/hooks'
+// import { NEVER_RELOAD, useMultipleContractSingleData } from '../multicall/hooks'
 import { tryParseAmount } from '../swap/hooks'
-import useCurrentBlockTimestamp from 'hooks/useCurrentBlockTimestamp'
+// import useCurrentBlockTimestamp from 'hooks/useCurrentBlockTimestamp'
 
 export const STAKING_GENESIS = 1600387200
 
@@ -70,10 +70,10 @@ export interface StakingInfo {
 
 // gets the staking info from the network for the active chain id
 export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
-  const { chainId, account } = useActiveWeb3React()
+  const { chainId } = useActiveWeb3React()
 
   // detect if staking is ended
-  const currentBlockTimestamp = useCurrentBlockTimestamp()
+  // const currentBlockTimestamp = useCurrentBlockTimestamp()
 
   // const info = useMemo(
   //   () =>
@@ -94,7 +94,7 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
 
   // const rewardsAddresses = useMemo(() => info.map(({ stakingRewardAddress }) => stakingRewardAddress), [info])
 
-  const accountArg = useMemo(() => [account ?? undefined], [account])
+  // const accountArg = useMemo(() => [account ?? undefined], [account])
 
   // get all the info from the staking rewards contracts
   // const balances = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'balanceOf', accountArg)
@@ -203,7 +203,7 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
   }, [
     // balances,
     chainId,
-    currentBlockTimestamp,
+    // currentBlockTimestamp,
     // earnedAmounts,
     // info,
     // periodFinishes,
