@@ -31,6 +31,8 @@ import Lock from './Lock'
 import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
 import Vote from './Vote'
 import VotePage from './Vote/VotePage'
+import Home from './Home'
+import Footer from '../components/Footer'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -64,6 +66,13 @@ const BodyWrapper = styled.div`
   z-index: 1;
 `
 
+const FooterWrapper = styled.div`
+  ${({ theme }) => theme.flexRowNoWrap}
+  width: 100%;
+  justify-content: space-between;
+  bottom: 0;
+`
+
 const Marginer = styled.div`
   margin-top: 5rem;
 `
@@ -90,6 +99,8 @@ export default function App() {
           <TopLevelModals />
           <Web3ReactManager>
             <Switch>
+              <Route exact strict path="/" component={Home} />
+              <Route exact strict path="/home" component={Home} />
               <Route exact strict path="/swap" component={Swap} />
               <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
               <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
@@ -118,6 +129,10 @@ export default function App() {
           </Web3ReactManager>
           <Marginer />
         </BodyWrapper>
+        <FooterWrapper>
+          <Footer />
+        </FooterWrapper>
+
       </AppWrapper>
     </Suspense>
   )
