@@ -227,9 +227,7 @@ body {
   background-position: 0 -30vh;
   background-repeat: no-repeat;
   background-image: ${({ theme }) =>
-    `radial-gradient(50% 50% at 50% 50%, ${transparentize(0.9, theme.primary1)} 0%, ${transparentize(
-      1,
-      theme.bg1
-    )} 100%)`};
+    `radial-gradient(50% 50% at 50% 30%, ${transparentize(0.8, theme.primary1)} 0%, ${transparentize(0, theme.bg1)} 100%)`};
+  background-color: white;
 }
 `
