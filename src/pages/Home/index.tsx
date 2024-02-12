@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import styled, { ThemeContext } from 'styled-components'
+import styled from 'styled-components'
 import { ButtonPrimary } from 'components/Button'
 import { ColumnCenter, AutoColumn } from 'components/Column'
 import Row from 'components/Row'
@@ -43,16 +43,16 @@ export const HomeSwapTextBottom = styled.div`
 `
 
 export default function Home() {
-    const theme = useContext(ThemeContext)
+    // const theme = useContext(ThemeContext)
     return (
         <>
             <ColumnCenter>
 
                 <TYPE.link fontWeight={700} fontSize={48} textAlign={'center'}>
-                    Trade crypto and NFTs with confidence
+                    Welcome to the Echoverse, home of $ECHO the dolphin.
                 </TYPE.link>
                 <TYPE.black fontWeight={400} fontSize={24} textAlign={'center'} margin={40}>
-                    Buy, sell, and explore tokens and NFTs
+                    This is your one stop shop for all interactions within the Harmony blockchain. Trade, Explore and earn yield using our curated interface.
                 </TYPE.black>
 
                 <ResponsiveButtonPrimary
@@ -81,19 +81,30 @@ export default function Home() {
                     <HomeSwapBG src={homeSwapBb} />
                     <HomeSwapText>
 
-                        <TYPE.black fontWeight={400} fontSize={36}>
-                            Swap tokens
+                        <TYPE.black fontWeight="bold" fontSize={36}>
+                            Swap Tokens
                         </TYPE.black>
-
                         <HomeSwapTextBottom>
                             <AutoColumn gap="lg">
                                 <TYPE.black fontWeight={400} fontSize={24}>
-                                    Buy, sell, and explore tokens on Ethereum, Polygon, Optimism, and more.
+                                    Buy, Sell and explore the Harmony blockchain by using $ECHO.
                                 </TYPE.black>
 
-                                <TYPE.link fontWeight={400} fontSize={24} color={'primaryText1'}>
-                                    Trade tokens
-                                </TYPE.link>
+                            </AutoColumn>
+                        </HomeSwapTextBottom>
+
+                        <TYPE.black fontWeight="bold" fontSize={36}>
+
+                        </TYPE.black>
+
+                        <TYPE.black fontWeight="bold" fontSize={36}>
+                            Provide Liquidity
+                        </TYPE.black>
+                        <HomeSwapTextBottom>
+                            <AutoColumn gap="lg">
+                                <TYPE.black fontWeight={400} fontSize={24}>
+                                    You can start any Liquidity Pool as well as safely lock the LP by using our Dapp.
+                                </TYPE.black>
                             </AutoColumn>
                         </HomeSwapTextBottom>
 
