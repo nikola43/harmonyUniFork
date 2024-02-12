@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { ThemeContext } from 'styled-components'
+// import { ThemeContext } from 'styled-components'
 import { AutoRow } from 'components/Row'
 import { Column, AutoColumn } from 'components/Column'
 import iconDextools from '../../assets/svg/socials/dextools.svg'
@@ -68,7 +68,7 @@ const ResponsiveButtonSecondary = styled(ButtonSecondary)`
 
 const Footer = () => {
 
-  const theme = useContext(ThemeContext)
+  // const theme = useContext(ThemeContext)
 
   return (
     <>
@@ -103,13 +103,13 @@ const Footer = () => {
           <FooterSocialColumn>
             <AutoRow justify='space-between'>
               <FooterLink href="#">
-                <img src={iconDextools} width={48} height={48} />
+                <img src={iconDextools} alt='dextools' width={48} height={48} />
               </FooterLink>
               <FooterLink href="#">
-                <img src={iconDiscord} width={60} height={60} />
+                <img src={iconDiscord} alt='discord' width={60} height={60} />
               </FooterLink>
               <FooterLink href="#">
-                <img src={iconTelegram} width={48} height={48} />
+                <img src={iconTelegram} alt='telegram' width={48} height={48} />
               </FooterLink>
             </AutoRow>
 

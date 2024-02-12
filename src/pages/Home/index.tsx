@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import styled, { ThemeContext } from 'styled-components'
+import styled from 'styled-components'
 import { ButtonPrimary } from 'components/Button'
 import { ColumnCenter, AutoColumn } from 'components/Column'
 import Row from 'components/Row'
@@ -43,7 +43,7 @@ export const HomeSwapTextBottom = styled.div`
 `
 
 export default function Home() {
-    const theme = useContext(ThemeContext)
+    // const theme = useContext(ThemeContext)
     return (
         <>
             <ColumnCenter>
