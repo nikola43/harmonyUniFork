@@ -1,7 +1,5 @@
 import React from 'react'
-import React from 'react'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
 import styled from 'styled-components'
 import { ButtonPrimary } from 'components/Button'
 import { ColumnCenter, AutoColumn } from 'components/Column'
@@ -104,7 +102,7 @@ export default function Home() {
                         </TYPE.black>
                         <HomeSwapTextBottom>
                             <AutoColumn gap="lg">
-                                <TYPE.black fontWeight={400} fontSize={24}>
+                                <TYPE.black fontWeight={400} fontSize={[16, 24]}>
                                     You can start any Liquidity Pool as well as safely lock the LP by using our Dapp.
                                 </TYPE.black>
                             </AutoColumn>
