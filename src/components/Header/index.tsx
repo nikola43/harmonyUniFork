@@ -17,8 +17,8 @@ import { CountUp } from 'use-count-up'
 import { TYPE } from '../../theme'
 
 import { YellowCard } from '../Card'
-import { Moon, Sun } from 'react-feather'
-import Menu from '../Menu'
+// import { Moon, Sun } from 'react-feather'
+// import Menu from '../Menu'
 
 import Row, { RowFixed } from '../Row'
 import Web3Status from '../Web3Status'
@@ -30,6 +30,8 @@ import { Dots } from '../swap/styleds'
 import Modal from '../Modal'
 import UniBalanceContent from './UniBalanceContent'
 import usePrevious from '../../hooks/usePrevious'
+import { SearchInput } from '../SearchModal/styleds'
+// import { FaSearch } from 'react-icons/fa';
 
 const HeaderFrame = styled.div`
   display: grid;
@@ -93,11 +95,6 @@ const HeaderElement = styled.div`
    flex-direction: row-reverse;
     align-items: center;
   `};
-`
-
-const HeaderElementWrap = styled.div`
-  display: flex;
-  align-items: center;
 `
 
 const HeaderRow = styled(RowFixed)`
@@ -287,6 +284,16 @@ export const StyledMenuButton = styled.button`
   }
 `
 
+export const HeaderSearchInput = styled(SearchInput)`
+  background: white;
+  border-style: none;
+  transition: border 100ms;
+  :focus {
+    border: 1px solid ${({ theme }) => theme.primary1};
+    outline: none;
+  }
+`
+
 const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
   // [ChainId.RINKEBY]: 'Rinkeby',
   // [ChainId.ROPSTEN]: 'Ropsten',
@@ -372,6 +379,20 @@ export default function Header() {
       </HeaderRow>
       <HeaderControls>
         <HeaderElement>
+          <Row width={"350px"} margin={"0px 30px"}>
+            <HeaderSearchInput
+              type="text"
+              id="token-search-input"
+              placeholder={t('Search tokens and NFT collections')}
+              autoComplete="off"
+            // value={searchQuery}
+            // ref={inputRef as RefObject<HTMLInputElement>}
+            // onChange={handleInput}
+            // onKeyDown={handleEnter}
+            />
+          </Row>
+        </HeaderElement>
+        <HeaderElement>
           <HideSmall>
             {chainId && NETWORK_LABELS[chainId] && (
               <NetworkCard title={NETWORK_LABELS[chainId]}>{NETWORK_LABELS[chainId]}</NetworkCard>
@@ -429,6 +450,6 @@ export default function Header() {
           <Menu />
         </HeaderElementWrap> */}
       </HeaderControls>
-    </HeaderFrame>
+    </HeaderFrame >
   )
 }

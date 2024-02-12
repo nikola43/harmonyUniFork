@@ -122,7 +122,8 @@
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@uniswap/default-token-list": "^2.0.0"
+    "@uniswap/default-token-list": "^2.0.0",
+    "react-icons": "^5.0.1"
   },
   "packageManager": "yarn@1.22.19"
 }
