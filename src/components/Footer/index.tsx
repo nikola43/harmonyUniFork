@@ -10,7 +10,7 @@ import { TYPE } from 'theme'
 import { Box } from 'rebass/styled-components'
 import { ButtonSecondary } from 'components/Button'
 import { Link } from 'react-router-dom'
-// import { FaDiscord } from 'react-icons/fa'
+import { FaDiscord } from 'react-icons/fa'
 
 const FooterFrame = styled.div`
     padding: 5% 5%;
@@ -45,12 +45,12 @@ const FooterSocialImage = styled.img`
   }
 `;
 
-// const SocialIconWrapper = styled.div`
-//   font-size: 48px;
-//   @media (max-width: 768px) {
-//     font-size: 36px;
-//   }
-// `;
+const SocialIconWrapper = styled.div`
+  font-size: 48px;
+  @media (max-width: 768px) {
+    font-size: 36px;
+  }
+`;
 
 const Heading = styled.p`
   font-size: 24px;
@@ -138,6 +138,9 @@ const Footer = () => {
               <FooterLink href="https://www.dextools.io" target='_blank'>
                 <img src={iconDextools} alt='dextools' width={48} height={48} />
               </FooterLink>
+              <SocialIconWrapper>
+                <a href='https://discord.com' target='_blank' rel="noopener noreferrer"><FaDiscord color='gray' /></a>
+              </SocialIconWrapper>
               <FooterLink href='https://twitter.com/flipperharmony' target='_blank'>
                 <FooterSocialImage src={iconX} />
               </FooterLink>
