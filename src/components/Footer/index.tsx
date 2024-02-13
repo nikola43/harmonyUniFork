@@ -5,11 +5,12 @@ import { Column, AutoColumn } from 'components/Column'
 import iconDextools from '../../assets/svg/socials/dextools.svg'
 // import iconDiscord from '../../assets/svg/socials/discord.svg'
 import iconTelegram from '../../assets/svg/socials/telegram.svg'
+import iconX from '../../assets/svg/socials/x.svg'
 import { TYPE } from 'theme'
 import { Box } from 'rebass/styled-components'
 import { ButtonSecondary } from 'components/Button'
 import { Link } from 'react-router-dom'
-import { FaDiscord } from 'react-icons/fa'
+// import { FaDiscord } from 'react-icons/fa'
 
 const FooterFrame = styled.div`
     padding: 5% 5%;
@@ -44,12 +45,12 @@ const FooterSocialImage = styled.img`
   }
 `;
 
-const SocialIconWrapper = styled.div`
-  font-size: 48px;
-  @media (max-width: 768px) {
-    font-size: 36px;
-  }
-`;
+// const SocialIconWrapper = styled.div`
+//   font-size: 48px;
+//   @media (max-width: 768px) {
+//     font-size: 36px;
+//   }
+// `;
 
 const Heading = styled.p`
   font-size: 24px;
@@ -134,14 +135,13 @@ const Footer = () => {
 
           <FooterSocialColumn>
             <AutoRow justify='space-between'>
-              <FooterLink href="#">
+              <FooterLink href="https://www.dextools.io" target='_blank'>
                 <img src={iconDextools} alt='dextools' width={48} height={48} />
               </FooterLink>
-              <SocialIconWrapper>
-                <FaDiscord color='gray' />
-                {/* <FooterSocialImage src={iconDiscord} /> */}
-              </SocialIconWrapper>
-              <FooterLink href="#">
+              <FooterLink href='https://twitter.com/flipperharmony' target='_blank'>
+                <FooterSocialImage src={iconX} />
+              </FooterLink>
+              <FooterLink href='https://t.me/Flipper_Echo_Harmony' target='_blank'>
                 <FooterSocialImage src={iconTelegram} />
               </FooterLink>
             </AutoRow>
