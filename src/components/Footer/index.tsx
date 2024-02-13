@@ -135,7 +135,7 @@ const Footer = () => {
           <FooterSocialColumn>
             <AutoRow justify='space-between'>
               <FooterLink href="#">
-                <img src={iconDextools} width={48} height={48} />
+                <img src={iconDextools} alt='dextools' width={48} height={48} />
               </FooterLink>
               <SocialIconWrapper>
                 <FaDiscord color='gray' />
