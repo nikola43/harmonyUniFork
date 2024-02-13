@@ -2,7 +2,8 @@ import { Currency, ETHER, Token } from 'constants/uniswap'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 
-import EthereumLogo from '../../assets/images/ethereum-logo.png'
+// import EthereumLogo from '../../assets/images/ethereum-logo.png'
+import EthereumLogo from '../../assets/images/harmony-one-logo.svg'
 import useHttpLocations from '../../hooks/useHttpLocations'
 import { WrappedTokenInfo } from '../../state/lists/hooks'
 import Logo from '../Logo'
@@ -17,7 +18,7 @@ const StyledEthereumLogo = styled.img<{ size: string }>`
   border-radius: 24px;
 `
 
-const StyledLogo = styled(Logo)<{ size: string }>`
+const StyledLogo = styled(Logo) <{ size: string }>`
   width: ${({ size }) => size};
   height: ${({ size }) => size};
   border-radius: ${({ size }) => size};
