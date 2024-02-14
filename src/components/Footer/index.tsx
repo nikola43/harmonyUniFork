@@ -5,6 +5,7 @@ import { Column, AutoColumn } from 'components/Column'
 import iconDextools from '../../assets/svg/socials/dextools.svg'
 // import iconDiscord from '../../assets/svg/socials/discord.svg'
 import iconTelegram from '../../assets/svg/socials/telegram.svg'
+import iconX from '../../assets/svg/socials/x.svg'
 import { TYPE } from 'theme'
 import { Box } from 'rebass/styled-components'
 import { ButtonSecondary } from 'components/Button'
@@ -145,10 +146,12 @@ const Footer = () => {
                 <FooterSocialImage src={iconDextools} />
               </FooterLink>
               <SocialIconWrapper>
-                <FaDiscord color='gray' />
-                {/* <FooterSocialImage src={iconDiscord} /> */}
+                <a href='https://discord.com' target='_blank' rel="noopener noreferrer"><FaDiscord color='gray' /></a>
               </SocialIconWrapper>
-              <FooterLink href="#">
+              <FooterLink href='https://twitter.com/flipperharmony' target='_blank'>
+                <FooterSocialImage src={iconX} />
+              </FooterLink>
+              <FooterLink href='https://t.me/Flipper_Echo_Harmony' target='_blank'>
                 <FooterSocialImage src={iconTelegram} />
               </FooterLink>
             </AutoRow>

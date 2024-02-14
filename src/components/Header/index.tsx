@@ -383,7 +383,7 @@ export default function Header() {
             <HeaderSearchInput
               type="text"
               id="token-search-input"
-              placeholder={t('Search tokens and NFT collections')}
+              placeholder={t('Search tokens')}
               autoComplete="off"
             // value={searchQuery}
             // ref={inputRef as RefObject<HTMLInputElement>}
