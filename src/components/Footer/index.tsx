@@ -169,14 +169,14 @@ const Footer = () => {
                 Tokens
               </FooterLink>
               <FooterLink href="#">
-                NFTs
+                Pools
               </FooterLink>
               <FooterLink href="#">
-                Pools
+                NFTs
               </FooterLink>
             </MenuColumn>
             <MenuColumn>
-              <Heading>Protocol</Heading>
+              <Heading>Comunity</Heading>
               <FooterLink href="#">
                 Community
               </FooterLink>
@@ -185,24 +185,6 @@ const Footer = () => {
               </FooterLink>
               <FooterLink href="#">
                 Developers
-              </FooterLink>
-            </MenuColumn>
-            <MenuColumn>
-              <Heading>Company</Heading>
-              <FooterLink href="#">
-                Careers
-              </FooterLink>
-              <FooterLink href="#">
-                Blog
-              </FooterLink>
-            </MenuColumn>
-            <MenuColumn>
-              <Heading>Get help</Heading>
-              <FooterLink href="#">
-                Contact Us
-              </FooterLink>
-              <FooterLink href="#">
-                Help Center
               </FooterLink>
             </MenuColumn>
           </FooterMenuColumn>
