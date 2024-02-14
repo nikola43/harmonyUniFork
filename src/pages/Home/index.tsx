@@ -42,10 +42,10 @@ export const HomeSwapText = styled(AutoColumn) <{ disabled?: boolean }>`
     }
 `
 
-export const HomeSwapTextBottom = styled.div`
+export const HomeSwapTextSection = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  /* justify-content: space-between; */
 `
 
 export default function Home() {
@@ -84,30 +84,26 @@ export default function Home() {
                 <SwapCard>
                     <HomeSwapBG src={homeSwapBb} />
                     <HomeSwapText>
-
-                        <TYPE.black fontWeight={600} fontSize={[24, 36]}>
-                            Swap tokens
-                        </TYPE.black>
-                        <HomeSwapTextBottom>
-                            <AutoColumn gap="lg">
-                                <TYPE.black fontWeight={400} fontSize={[16, 24]}>
-                                    Buy, Sell and explore the Harmony blockchain by using $ECHO.
+                        <AutoColumn justify='stretch'>
+                            <AutoColumn gap="8">
+                                <TYPE.black fontWeight={600} fontSize={[16, 28, 36]}>
+                                    Swap tokens
                                 </TYPE.black>
 
+                                <TYPE.black fontWeight={400} fontSize={[12, 20, 24]}>
+                                    Buy, Sell and explore the Harmony blockchain by using $ECHO.
+                                </TYPE.black>
                             </AutoColumn>
-                        </HomeSwapTextBottom>
 
-                        <TYPE.black fontWeight="600" fontSize={[24, 36]}>
-                            Provide Liquidity
-                        </TYPE.black>
-                        <HomeSwapTextBottom>
-                            <AutoColumn gap="lg">
-                                <TYPE.black fontWeight={400} fontSize={[16, 24]}>
+                            <AutoColumn gap="8">
+                                <TYPE.black fontWeight={600} fontSize={[16, 28, 36]}>
+                                    Provide Liquidity
+                                </TYPE.black>
+                                <TYPE.black fontWeight={400} fontSize={[12, 20, 24]}>
                                     You can start any Liquidity Pool as well as safely lock the LP by using our Dapp.
                                 </TYPE.black>
                             </AutoColumn>
-                        </HomeSwapTextBottom>
-
+                        </AutoColumn>
                     </HomeSwapText>
                 </SwapCard>
 

@@ -96,9 +96,16 @@ const ResponsiveButtonSecondary = styled(ButtonSecondary)`
   width: fit-content;
   border-radius: 16px;
   padding: 24px 42px; /* Adjust padding for larger screens */
-  @media (max-width: 768px) {
-    padding: 24px 24px; /* Adjust padding for smaller screens */
+  @media (max-width: 1024px) {
     margin-top: 20px;
+  }
+  @media (max-width: 768px) {
+    padding: 16px 24px; /* Adjust padding for smaller screens */
+    margin-top: 20px;
+  }
+  @media (max-width: 480px) {
+    padding: 12px 20px; /* Adjust padding for smaller screens */
+    margin-top: 12px;
   }
 `
 
@@ -109,10 +116,10 @@ const Footer = () => {
         <FooterCard>
           <AutoRow justify='center'>
             <AutoColumn gap="10px" style={{ width: "70%", padding: "auto" }}>
-              <TYPE.link fontWeight={700} fontSize={[28, 40]} color={'white'}>
+              <TYPE.link fontWeight={700} fontSize={[20, 28, 40]} color={'white'}>
                 Powered by the Harmony Protocol
               </TYPE.link>
-              <TYPE.link fontWeight={600} fontSize={[16, 24]} color={'white'}>
+              <TYPE.link fontWeight={600} fontSize={[12, 16, 24]} color={'white'}>
                 The leading decentralized crypto trading protocol, governed by a global community.
               </TYPE.link>
             </AutoColumn>
@@ -135,7 +142,7 @@ const Footer = () => {
           <FooterSocialColumn>
             <AutoRow justify='space-between'>
               <FooterLink href="#">
-                <img src={iconDextools} width={48} height={48} />
+                <FooterSocialImage src={iconDextools} />
               </FooterLink>
               <SocialIconWrapper>
                 <FaDiscord color='gray' />
