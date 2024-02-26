@@ -32,7 +32,7 @@ function LockSuccess() {
                 <BackButton onClick={handleBackClick}>
                     <ArrowLeft /><TYPE.text_xs color={"white"}>Back</TYPE.text_xs>
                 </BackButton>
-                <ColumnCenter style={{ marginBottom: "24px" }}>
+                <ColumnCenter style={{ marginBottom: "32px" }}>
                     <MdLock style={{ fontSize: "60px", margin: "8px" }} />
                     <TYPE.text_lg color={"white"}>Success!</TYPE.text_lg>
                     <TYPE.text_xs color={"white"}>LP tokens locked</TYPE.text_xs>
@@ -40,7 +40,7 @@ function LockSuccess() {
                 <TYPE.text_xs color={"white"}>
                     This will be visible within our browser list within 15 mins. Thank you for using out locker. Best of luck with your project!
                 </TYPE.text_xs>
-                <TYPE.text_xs color={"white"} marginY={"12px"}>
+                <TYPE.text_xs color={"white"} marginY={"18px"}>
                     Please stay tuned for new services we will offer ERC20 projects.
                 </TYPE.text_xs>
                 <ButtonPairContinue
