@@ -145,7 +145,7 @@ function Web3StatusLock() {
             // onChange={handleInput}
             // onKeyDown={handleEnter}
             />
-            <TYPE.text_xxs color={'text4'} textAlign={'center'}>e.g. 0xc70bb2736e218861dca818d1e9f7a1930fe61e5b</TYPE.text_xxs>
+            <TYPE.text_xxs color={'primary5'} textAlign={'center'}>e.g. 0xc70bb2736e218861dca818d1e9f7a1930fe61e5b</TYPE.text_xxs>
 
             <LockPairCard />
 

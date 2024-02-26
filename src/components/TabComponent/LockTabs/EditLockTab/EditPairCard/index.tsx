@@ -5,7 +5,7 @@ import { TYPE } from "theme";
 import uniLogo from 'assets/images/token-logo.png'
 import { ResponsiveButtonSecondary } from "components/Button";
 import { BlueCardShadow } from "components/Card";
-import { setLockerStep, useLockerState } from "state/locker/locker.store";
+import { setEditStep, useLockerState } from "state/locker/locker.store";
 
 const LockPairCardWrapper = styled(BlueCardShadow) <{ width?: string; padding?: string; border?: string; borderRadius?: string }>`
   padding: 16px;
@@ -24,11 +24,11 @@ const ButtonPairContinue = styled(ResponsiveButtonSecondary)`
   width: 100%;
 `
 
-function LockPairCard() {
+function EditPairCard() {
     const [isLplocked] = useLockerState("isLplocked");
 
     const handlePairSelect = () => {
-        setLockerStep("pair_selected")
+        setEditStep("pair_selected")
     }
 
     return (
@@ -73,5 +73,5 @@ function LockPairCard() {
         </LockPairCardWrapper>
     );
 };
-export default LockPairCard;
+export default EditPairCard;
 
