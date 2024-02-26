@@ -187,7 +187,7 @@ const Footer = () => {
               </FooterLink>
             </MenuColumn>
             <MenuColumn>
-              <Heading><TYPE.text_md fontWeight={700}>Protocol</TYPE.text_md></Heading>
+              <Heading>Protocol</Heading>
               <FooterLink href="#">
                 <TYPE.text_sm color={"black"}>Community</TYPE.text_sm>
               </FooterLink>
