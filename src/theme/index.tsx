@@ -60,14 +60,10 @@ export function colors(darkMode: boolean): Colors {
 
     //primary colors
     primary1: darkMode ? '#2172E5' : '#29addf',
-    primary2: darkMode ? '#3680E7' : '#FF8CC3',
-    primary3: darkMode ? '#4D8FEA' : '#FF99C9',
-    primary4: darkMode ? '#376bad70' : '#F6DDE8',
-    primary5: darkMode ? '#153d6f70' : '#e3f6fc',
-    // primary2: darkMode ? '#3680E7' : '#3bacdf',
-    // primary3: darkMode ? '#4D8FEA' : '#59c2df',
-    // primary4: darkMode ? '#376bad70' : '#4aa2df70',
-    // primary5: darkMode ? '#153d6f70' : '#1d73a570',
+    primary2: darkMode ? '#3680E7' : '#92c9eb',
+    primary3: darkMode ? '#4D8FEA' : '#b7d9f2',
+    primary4: darkMode ? '#376bad70' : '#c5e4f0',
+    primary5: darkMode ? '#153d6f70' : '#e0f2f8',
 
     // color text
     primaryText1: darkMode ? '#6da8ff' : '#29addf',
@@ -177,7 +173,28 @@ export const TYPE = {
   },
   error({ error, ...props }: { error: boolean } & TextProps) {
     return <TextWrapper fontWeight={500} color={error ? 'red1' : 'text2'} {...props} />
-  }
+  },
+  text_xxs(props: TextProps) {
+    return <TextWrapper fontWeight={400} fontSize={[9, 11, 14]}  {...props} />
+  },
+  text_xs(props: TextProps) {
+    return <TextWrapper fontWeight={400} fontSize={[10, 12, 16]} color={'black'} {...props} />
+  },
+  text_sm(props: TextProps) {
+    return <TextWrapper fontWeight={400} fontSize={[12, 16, 20]} {...props} />
+  },
+  text_md(props: TextProps) {
+    return <TextWrapper fontWeight={400} fontSize={[14, 19, 24]} color={'black'} {...props} />
+  },
+  text_lg(props: TextProps) {
+    return <TextWrapper fontWeight={600} fontSize={[18, 27, 36]} color={'black'} {...props} />
+  },
+  text_xl(props: TextProps) {
+    return <TextWrapper fontWeight={700} fontSize={[20, 30, 40]} color={'black'} {...props} />
+  },
+  text_xxl(props: TextProps) {
+    return <TextWrapper fontWeight={700} fontSize={[24, 36, 48]} color={'black'} {...props} />
+  },
 }
 
 export const FixedGlobalStyle = createGlobalStyle`

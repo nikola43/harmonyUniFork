@@ -1,24 +1,25 @@
-import { createWeb3ReactRoot, Web3ReactProvider } from '@web3-react/core'
-import 'inter-ui'
 import React, { StrictMode } from 'react'
-import { isMobile } from 'react-device-detect'
 import ReactDOM from 'react-dom'
 import ReactGA from 'react-ga'
 import { Provider } from 'react-redux'
 import { HashRouter } from 'react-router-dom'
-import Blocklist from './components/Blocklist'
-import { NetworkContextName } from './constants'
-import './i18n'
+import { isMobile } from 'react-device-detect'
+import { createWeb3ReactRoot, Web3ReactProvider } from '@web3-react/core'
+import 'inter-ui'
 import App from './pages/App'
-import store from './state'
+import './i18n'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
+import store from './state'
 import ApplicationUpdater from './state/application/updater'
 import ListsUpdater from './state/lists/updater'
 import MulticallUpdater from './state/multicall/updater'
 import TransactionUpdater from './state/transactions/updater'
 import UserUpdater from './state/user/updater'
+import Blocklist from './components/Blocklist'
 import ThemeProvider, { FixedGlobalStyle, ThemedGlobalStyle } from './theme'
 import getLibrary from './utils/getLibrary'
+import { NetworkContextName } from './constants'
+// DateTimeAdapter
 
 const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName)
 
@@ -86,4 +87,4 @@ ReactDOM.render(
 serviceWorkerRegistration.unregister()
 
 // console.log = function () {};
-console.warn = function () {};
+console.warn = function () { };
