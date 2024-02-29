@@ -1,16 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { AutoRow } from 'components/Row'
-import { Column, AutoColumn } from 'components/Column'
+import { Column } from 'components/Column'
+import { ResponsiveButtonSecondary } from 'components/Button'
+import { TYPE } from 'theme'
+import { FaDiscord } from 'react-icons/fa'
 import iconDextools from '../../assets/svg/socials/dextools.svg'
 // import iconDiscord from '../../assets/svg/socials/discord.svg'
 import iconTelegram from '../../assets/svg/socials/telegram.svg'
 import iconX from '../../assets/svg/socials/x.svg'
-import { TYPE } from 'theme'
-import { Box } from 'rebass/styled-components'
-import { ButtonSecondary } from 'components/Button'
-import { Link } from 'react-router-dom'
-import { FaDiscord } from 'react-icons/fa'
+import { BlueCardShadow } from 'components/Card'
 
 const FooterFrame = styled.div`
     padding: 5% 5%;
@@ -23,9 +23,7 @@ const FooterFrame = styled.div`
 `;
 
 const FooterLink = styled.a`
-    color: black;
     margin-bottom: 20px;
-    font-size: 18px;
     text-decoration: none;
  
     &:hover {
@@ -34,7 +32,7 @@ const FooterLink = styled.a`
     }
 
     @media (max-width: 768px) {
-      font-size: 12px;
+      margin-bottom: 15px;
     }
 `;
 
@@ -52,13 +50,10 @@ const SocialIconWrapper = styled.div`
   }
 `;
 
-const Heading = styled.p`
-  font-size: 24px;
-  color: black;
+const Heading = styled.div`
   margin-bottom: 20px;
-  font-weight: bold;
   @media (max-width: 768px) {
-    font-size: 16px;
+    margin-bottom: 15px;
   }
 `;
 
@@ -81,22 +76,38 @@ const MenuColumn = styled(Column) <{ disabled?: boolean }>`
   margin: 0px 20px;
 `;
 
-const FooterCard = styled(Box) <{ width?: string; padding?: string; border?: string; borderRadius?: string }>`
-  border-radius: 36px;
-  background-color: ${({ theme }) => theme.primary1};
-  /* width: fit-content; */
+const FooterCard = styled(BlueCardShadow) <{ width?: string; padding?: string; border?: string; borderRadius?: string }>`
   width: 90%;
-  margin: 0 auto;
-  padding: 20px 0px;
+  border-radius: 36px;
+  padding: 20px 20px;
   @media (max-width: 768px) {
-    padding: 10px 0px;
+    padding: 10px 15px;
   }
 `;
 
-const ResponsiveButtonSecondary = styled(ButtonSecondary)`
-  width: fit-content;
+const FooterCardText = styled(AutoRow) <{ disabled?: boolean }>`
+  gap: 10px;
+  width: 70%;
+  /* padding: auto; */
+  padding: 12px;
+  @media (max-width: 1024px) {
+    padding: 8px;
+    width: 100%;
+  }
+  @media (max-width: 768px) {
+    padding: 6px;
+    width: 100%;
+  }
+  @media (max-width: 480px) {
+    padding: 4px;
+    width: 100%;
+  }
+`;
+
+const ButtonLearnMore = styled(ResponsiveButtonSecondary)`
   border-radius: 16px;
   padding: 24px 42px; /* Adjust padding for larger screens */
+  margin: 0px;
   @media (max-width: 1024px) {
     margin-top: 20px;
   }
@@ -116,24 +127,24 @@ const Footer = () => {
       <FooterFrame style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <FooterCard>
           <AutoRow justify='center'>
-            <AutoColumn gap="10px" style={{ width: "70%", padding: "auto" }}>
-              <TYPE.link fontWeight={700} fontSize={[20, 28, 40]} color={'white'}>
+            <FooterCardText>
+              <TYPE.text_xl color={"white"}>
                 Powered by the Harmony Protocol
-              </TYPE.link>
-              <TYPE.link fontWeight={600} fontSize={[12, 16, 24]} color={'white'}>
+              </TYPE.text_xl>
+              <TYPE.text_md fontWeight={600} color={"white"}>
                 The leading decentralized crypto trading protocol, governed by a global community.
-              </TYPE.link>
-            </AutoColumn>
+              </TYPE.text_md>
+            </FooterCardText>
             <Column style={{ padding: "0px 30px" }}>
-              <ResponsiveButtonSecondary
+              <ButtonLearnMore
                 id="learn-more-button"
                 as={Link}
-                to="/get_started"
+                to="/learn_more"
               >
-                <TYPE.white fontWeight={400} textAlign={'center'} fontSize={[14, 20]}>
+                <TYPE.text_sm color={"white"} textAlign={'center'} >
                   Learn more
-                </TYPE.white>
-              </ResponsiveButtonSecondary>
+                </TYPE.text_sm>
+              </ButtonLearnMore>
             </Column>
           </AutoRow>
         </FooterCard>
@@ -156,40 +167,58 @@ const Footer = () => {
               </FooterLink>
             </AutoRow>
 
-            <TYPE.black fontWeight={400} textAlign={'center'} fontSize={[16, 24]}>© {new Date().getFullYear()} Harmony Labs</TYPE.black>
+            <TYPE.text_md textAlign={'center'}>© {new Date().getFullYear()} Harmony Labs</TYPE.text_md>
 
           </FooterSocialColumn>
           <FooterMenuColumn>
             <MenuColumn>
-              <Heading>App</Heading>
+              <Heading><TYPE.text_md fontWeight={700}>App</TYPE.text_md></Heading>
               <FooterLink href="#">
-                Swap
+                <TYPE.text_sm color={"black"}>Swap</TYPE.text_sm>
               </FooterLink>
               <FooterLink href="#">
-                Tokens
+                <TYPE.text_sm color={"black"}>Tokens</TYPE.text_sm>
               </FooterLink>
               <FooterLink href="#">
-                Pools
+                <TYPE.text_sm color={"black"}>NFTs</TYPE.text_sm>
               </FooterLink>
               <FooterLink href="#">
-                NFTs
+                <TYPE.text_sm color={"black"}>Pools</TYPE.text_sm>
               </FooterLink>
             </MenuColumn>
             <MenuColumn>
-              <Heading>Comunity</Heading>
+              <Heading>Protocol</Heading>
               <FooterLink href="#">
-                Community
+                <TYPE.text_sm color={"black"}>Community</TYPE.text_sm>
               </FooterLink>
               <FooterLink href="#">
-                Goverence
+                <TYPE.text_sm color={"black"}>Governance</TYPE.text_sm>
               </FooterLink>
               <FooterLink href="#">
-                Developers
+                <TYPE.text_sm color={"black"}>Developers</TYPE.text_sm>
+              </FooterLink>
+            </MenuColumn>
+            <MenuColumn>
+              <Heading><TYPE.text_md fontWeight={700}>Company</TYPE.text_md></Heading>
+              <FooterLink href="#">
+                <TYPE.text_sm color={"black"}>Careers</TYPE.text_sm>
+              </FooterLink>
+              <FooterLink href="#">
+                <TYPE.text_sm color={"black"}>Blog</TYPE.text_sm>
+              </FooterLink>
+            </MenuColumn>
+            <MenuColumn>
+              <Heading><TYPE.text_md fontWeight={700}>Get help</TYPE.text_md></Heading>
+              <FooterLink href="#">
+                <TYPE.text_sm color={"black"}>Contact Us</TYPE.text_sm>
+              </FooterLink>
+              <FooterLink href="#">
+                <TYPE.text_sm color={"black"}>Help Center</TYPE.text_sm>
               </FooterLink>
             </MenuColumn>
           </FooterMenuColumn>
-        </AutoRow >
-      </FooterFrame >
+        </AutoRow>
+      </FooterFrame>
     </>
   )
 }

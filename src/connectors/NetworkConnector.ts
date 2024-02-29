@@ -47,7 +47,7 @@ class MiniRpcProvider implements AsyncSendable {
     // this.host = parsed.host
     // this.path = parsed.pathname
     this.host = "endpoints.omniatech.io"
-    this.path = "v1/harmony/testnet-0/f05db64766f4435eb2608753eab4ffb0"
+    this.path = "v1/harmony/testnet-0/95dc22d9304441e38fa7ed856ba9033e"
     // how long to wait to batch calls
     this.batchWaitTimeMs = batchWaitTimeMs ?? 50
   }

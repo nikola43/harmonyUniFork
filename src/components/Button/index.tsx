@@ -277,6 +277,63 @@ const ButtonErrorStyle = styled(Base)`
   }
 `
 
+export const ResponsiveButtonPrimary = styled(ButtonPrimary)`
+  width: fit-content;
+  border-radius: 24px;
+  padding: 14px; /* Adjust padding for larger screens */
+  @media (max-width: 1024px) {
+    padding: 10px;
+  }
+  @media (max-width: 768px) {
+    padding: 8px; /* Adjust padding for smaller screens */
+  }
+  @media (max-width: 480px) {
+    padding: 6px; /* Adjust padding for smaller screens */
+  }
+`
+
+export const ResponsiveButtonSecondary = styled(ButtonSecondary)`
+  width: fit-content;
+  border-radius: 24px;
+  padding: 14px; /* Adjust padding for larger screens */
+  &:hover {
+    background: ${({ theme }) => theme.primary3};
+  }
+  &:active {
+    background: ${({ theme }) => theme.primary4};
+  }
+  @media (max-width: 1024px) {
+    padding: 10px;
+  }
+  @media (max-width: 768px) {
+    padding: 8px; /* Adjust padding for smaller screens */
+  }
+  @media (max-width: 480px) {
+    padding: 6px; /* Adjust padding for smaller screens */
+  }
+`
+
+export const ResponsiveButtonEmpty = styled(ButtonEmpty)`
+  width: fit-content;
+  border-radius: 8px;
+  padding: 8px;
+  &:hover {
+    background: ${({ theme }) => theme.primary3};
+  }
+  &:active {
+    background: ${({ theme }) => theme.primary4};
+  }
+  @media (max-width: 1024px) {
+    padding: 6px;
+  }
+  @media (max-width: 768px) {
+    padding: 4px; 
+  }
+  @media (max-width: 480px) {
+    padding: 2px;
+  }
+`
+
 export function ButtonConfirmed({
   confirmed,
   altDisabledStyle,
@@ -337,3 +394,4 @@ export function ButtonRadio({ active, ...rest }: { active?: boolean } & ButtonPr
     return <ButtonPrimary {...rest} />
   }
 }
+

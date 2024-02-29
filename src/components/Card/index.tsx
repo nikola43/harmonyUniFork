@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { CardProps, Text } from 'rebass'
 import { Box } from 'rebass/styled-components'
 
-const Card = styled(Box)<{ width?: string; padding?: string; border?: string; borderRadius?: string }>`
+const Card = styled(Box) <{ width?: string; padding?: string; border?: string; borderRadius?: string }>`
   width: ${({ width }) => width ?? '100%'};
   border-radius: 16px;
   padding: 1.25rem;
@@ -58,3 +58,35 @@ export const BlueCard = ({ children, ...rest }: CardProps) => {
     </BlueCardStyled>
   )
 }
+
+export const BlueCardShadow = styled(Box) <{ width?: string; padding?: string; border?: string; borderRadius?: string }>`
+  width: 100%;
+  background-color: ${({ theme }) => theme.primary1};
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
+    0px 24px 32px rgba(0, 0, 0, 0.01);
+  padding: 32px;
+  @media (max-width: 1024px) {
+    padding: 26px;
+  }
+  @media (max-width: 768px) {
+    padding: 20px; /* Adjust padding for smaller screens */
+  }
+  @media (max-width: 480px) {
+    padding: 14px; /* Adjust padding for smaller screens */
+  }
+`;
+
+export const LightCardShadow = styled(Box) <{ width?: string; padding?: string; border?: string; borderRadius?: string }>`
+  width: 100%;
+  background-color: ${({ theme }) => theme.primary2};
+  color: ${({ theme }) => theme.primary1};
+  border-radius: 16px;
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
+    0px 24px 32px rgba(0, 0, 0, 0.01);
+  padding: 16px;
+  @media (max-width: 768px) {
+    padding: 10px 10px;
+  }
+`;
