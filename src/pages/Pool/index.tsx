@@ -107,7 +107,8 @@ export default function Pool() {
 
   const allV2PairsWithLiquidity = v2Pairs.map(([, pair]) => pair).filter((v2Pair): v2Pair is Pair => Boolean(v2Pair))
 
-  const hasV1Liquidity = useUserHasLiquidityInAllTokens()
+  // const hasV1Liquidity = useUserHasLiquidityInAllTokens()
+  const hasV1Liquidity = undefined
 
   // show liquidity even if its deposited in rewards contract
   const stakingInfo = useStakingInfo()

@@ -21,7 +21,7 @@ var ChainId;
   // ChainId[ChainId["RINKEBY"] = 4] = "RINKEBY";
   // ChainId[ChainId["G\xD6RLI"] = 5] = "G\xD6RLI";
   // ChainId[ChainId["KOVAN"] = 42] = "KOVAN";
-  ChainId[ChainId["MAINNET"] = 1666600000] = "MAINNET";
+  ChainId[ChainId["HARMONY"] = 1666600000] = "HARMONY";
   ChainId[ChainId["TESTNET"] = 1666700000] = "TESTNET";
 })(ChainId || (ChainId = {}));
 
@@ -41,7 +41,8 @@ var Rounding;
 })(Rounding || (Rounding = {}));
 
 var FACTORY_ADDRESS = '0xa041855C1c2e23f959f6ab9Ac70BEbA0Ec511c5a';
-var INIT_CODE_HASH = '0x269e474423a1d29bef6c0d23e0de37b73fbd4cdc2db36b2fac3267a7d9c585c8';
+// var INIT_CODE_HASH = '0x269e474423a1d29bef6c0d23e0de37b73fbd4cdc2db36b2fac3267a7d9c585c8'; // testnet
+var INIT_CODE_HASH = '0x6bbe055ca207447e41a4427514874f203de3431e6efa2dc2721af18d2c3ff686'; // mainnet
 var MINIMUM_LIQUIDITY = /*#__PURE__*/JSBI.BigInt(1000); // exports for internal consumption
 
 var ZERO = /*#__PURE__*/JSBI.BigInt(0);
@@ -443,7 +444,7 @@ function currencyEquals(currencyA, currencyB) {
 var WETH = (_WETH = {},
   _WETH[ChainId.MAINNET] = /*#__PURE__*/new Token(ChainId.MAINNET, '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', 18, 'WETH', 'Wrapped Ether'), _WETH[ChainId.ROPSTEN] = /*#__PURE__*/new Token(ChainId.ROPSTEN, '0xc778417E063141139Fce010982780140Aa0cD5Ab', 18, 'WETH', 'Wrapped Ether'), _WETH[ChainId.RINKEBY] = /*#__PURE__*/new Token(ChainId.RINKEBY, '0xc778417E063141139Fce010982780140Aa0cD5Ab', 18, 'WETH', 'Wrapped Ether'), _WETH[ChainId.GÖRLI] = /*#__PURE__*/new Token(ChainId.GÖRLI, '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6', 18, 'WETH', 'Wrapped Ether'),
   _WETH[ChainId.KOVAN] = /*#__PURE__*/new Token(ChainId.KOVAN, '0xd0A1E359811322d97991E03f863a0C30C2cF029C', 18, 'WETH', 'Wrapped Ether'),
-  _WETH[ChainId.HARMONY] = /*#__PURE__*/new Token(ChainId.HARMONY, '0x715D0aE552FE5B04A0C3ee7078Ba2fbb804Cc2A3', 18, 'WETH', 'Wrapped Ether'),
+  _WETH[ChainId.HARMONY] = /*#__PURE__*/new Token(ChainId.HARMONY, '0xcF664087a5bB0237a0BAd6742852ec6c8d69A27a', 18, 'WONE', 'Wrapped One'),
   _WETH[ChainId.TESTNET] = /*#__PURE__*/new Token(ChainId.TESTNET, '0x715D0aE552FE5B04A0C3ee7078Ba2fbb804Cc2A3', 18, 'WETH', 'Wrapped Ether'), _WETH);
 
 var _toSignificantRoundin, _toFixedRounding;

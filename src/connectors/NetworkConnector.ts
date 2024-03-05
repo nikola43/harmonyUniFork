@@ -43,11 +43,11 @@ class MiniRpcProvider implements AsyncSendable {
   constructor(chainId: number, url: string, batchWaitTimeMs?: number) {
     this.chainId = chainId
     this.url = url
-    // const parsed = new URL(url)
-    // this.host = parsed.host
-    // this.path = parsed.pathname
-    this.host = "endpoints.omniatech.io"
-    this.path = "v1/harmony/testnet-0/95dc22d9304441e38fa7ed856ba9033e"
+    const parsed = new URL(url)
+    this.host = parsed.host
+    this.path = parsed.pathname
+    // this.host = "endpoints.omniatech.io"
+    // this.path = "v1/harmony/testnet-0/95dc22d9304441e38fa7ed856ba9033e"
     // how long to wait to batch calls
     this.batchWaitTimeMs = batchWaitTimeMs ?? 50
   }
