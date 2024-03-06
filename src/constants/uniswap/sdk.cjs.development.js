@@ -26,7 +26,7 @@ var _SOLIDITY_TYPE_MAXIMA;
   // ChainId[ChainId["RINKEBY"] = 4] = "RINKEBY";
   // ChainId[ChainId["G\xD6RLI"] = 5] = "G\xD6RLI";
   // ChainId[ChainId["KOVAN"] = 42] = "KOVAN";
-  ChainId[ChainId["MAINNET"] = 1666600000] = "MAINNET";
+  ChainId[ChainId["HARMONY"] = 1666600000] = "HARMONY";
   ChainId[ChainId["TESTNET"] = 1666700000] = "TESTNET";
 })(exports.ChainId || (exports.ChainId = {}));
 
@@ -42,7 +42,8 @@ var _SOLIDITY_TYPE_MAXIMA;
 })(exports.Rounding || (exports.Rounding = {}));
 
 var FACTORY_ADDRESS = '0xa041855C1c2e23f959f6ab9Ac70BEbA0Ec511c5a';
-var INIT_CODE_HASH = '0x269e474423a1d29bef6c0d23e0de37b73fbd4cdc2db36b2fac3267a7d9c585c8';
+// var INIT_CODE_HASH = '0x269e474423a1d29bef6c0d23e0de37b73fbd4cdc2db36b2fac3267a7d9c585c8'; // testnet
+var INIT_CODE_HASH = '0x6bbe055ca207447e41a4427514874f203de3431e6efa2dc2721af18d2c3ff686'; // mainnet
 var MINIMUM_LIQUIDITY = /*#__PURE__*/JSBI.BigInt(1000); // exports for internal consumption
 
 var ZERO = /*#__PURE__*/JSBI.BigInt(0);
@@ -454,7 +455,7 @@ var WETH = (_WETH = {},
   //    _WETH[exports.ChainId.RINKEBY] = /*#__PURE__*/new Token(exports.ChainId.RINKEBY, '0xc778417E063141139Fce010982780140Aa0cD5Ab', 18, 'WETH', 'Wrapped Ether'),
   //     _WETH[exports.ChainId.GÖRLI] = /*#__PURE__*/new Token(exports.ChainId.GÖRLI, '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6', 18, 'WETH', 'Wrapped Ether'),
   //      _WETH[exports.ChainId.KOVAN] = /*#__PURE__*/new Token(exports.ChainId.KOVAN, '0xd0A1E359811322d97991E03f863a0C30C2cF029C', 18, 'WETH', 'Wrapped Ether'),
-  _WETH[exports.ChainId.MAINNET] = /*#__PURE__*/new Token(exports.ChainId.MAINNET, '0x715D0aE552FE5B04A0C3ee7078Ba2fbb804Cc2A3', 18, 'WETH', 'Wrapped Ether'),
+  _WETH[exports.ChainId.HARMONY] = /*#__PURE__*/new Token(exports.ChainId.HARMONY, '0xcF664087a5bB0237a0BAd6742852ec6c8d69A27a', 18, 'WONE', 'Wrapped One'),
   _WETH[exports.ChainId.TESTNET] = /*#__PURE__*/new Token(exports.ChainId.TESTNET, '0x715D0aE552FE5B04A0C3ee7078Ba2fbb804Cc2A3', 18, 'WETH', 'Wrapped Ether'),
   _WETH);
 
@@ -1468,8 +1469,8 @@ var Router = /*#__PURE__*/function () {
 
         break;
 
-        default:
-          throw new Error('Invalid TradeType');
+      default:
+        throw new Error('Invalid TradeType');
     }
 
     return {

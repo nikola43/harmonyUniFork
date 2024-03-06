@@ -299,9 +299,9 @@ const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
   // [ChainId.ROPSTEN]: 'Ropsten',
   // [ChainId.GÖRLI]: 'Görli',
   // [ChainId.KOVAN]: 'Kovan',
-  // [ChainId.HARMONY]: 'Harmony',
-  [ChainId.MAINNET]: 'Harmony',
-  [ChainId.TESTNET]: 'Harmony Testnet',
+  [ChainId.HARMONY]: 'Harmony',
+  // [ChainId.MAINNET]: 'Harmony',
+  [ChainId.TESTNET]: 'Harmony Testnet'
 }
 
 export default function Header() {

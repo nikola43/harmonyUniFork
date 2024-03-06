@@ -446,6 +446,38 @@
       "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xd0A1E359811322d97991E03f863a0C30C2cF029C/logo.png"
     },
     {
+      "name": "Wrapped One",
+      "address": "0xcF664087a5bB0237a0BAd6742852ec6c8d69A27a",
+      "symbol": "WONE",
+      "decimals": 18,
+      "chainId": 1666600000,
+      "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xd0A1E359811322d97991E03f863a0C30C2cF029C/logo.png"
+    },
+    {
+      "name": "Tether USD",
+      "address": "0xf2732e8048f1a411c63e2df51d08f4f52e598005",
+      "symbol": "USDT",
+      "decimals": 18,
+      "chainId": 1666600000,
+      "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xd0A1E359811322d97991E03f863a0C30C2cF029C/logo.png"
+    },
+    {
+      "name": "Mock Token 1",
+      "address": "0x92435e567aF7aD0a0393f0D63bdfC3eb4272c88B",
+      "symbol": "MTK1",
+      "decimals": 18,
+      "chainId": 1666600000,
+      "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xd0A1E359811322d97991E03f863a0C30C2cF029C/logo.png"
+    },
+    {
+      "name": "Mock Token 2",
+      "address": "0x1d6d3480Ef92F6282B658A609589F157aED6a0a0",
+      "symbol": "MTK2",
+      "decimals": 18,
+      "chainId": 1666600000,
+      "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xd0A1E359811322d97991E03f863a0C30C2cF029C/logo.png"
+    },
+    {
       "name": "Wrapped Ether",
       "address": "0x715D0aE552FE5B04A0C3ee7078Ba2fbb804Cc2A3",
       "symbol": "WETH",
