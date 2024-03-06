@@ -451,12 +451,20 @@
       "symbol": "WONE",
       "decimals": 18,
       "chainId": 1666600000,
-      "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xd0A1E359811322d97991E03f863a0C30C2cF029C/logo.png"
+      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/3945.png"
     },
     {
       "name": "Tether USD",
       "address": "0xf2732e8048f1a411c63e2df51d08f4f52e598005",
       "symbol": "USDT",
+      "decimals": 6,
+      "chainId": 1666600000,
+      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/825.png"
+    },
+    {
+      "name": "Harmony Protocol",
+      "address": "0xe9B2C9a588684aAb708a20DD255476D6bE063e52",
+      "symbol": "HPROT",
       "decimals": 18,
       "chainId": 1666600000,
       "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xd0A1E359811322d97991E03f863a0C30C2cF029C/logo.png"

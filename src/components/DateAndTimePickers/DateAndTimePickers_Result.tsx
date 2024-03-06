@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-export default function DateAndTimePickers_Result() {
+export default function DateAndTimePickersResult() {
     const classes = useStyles();
 
     return (

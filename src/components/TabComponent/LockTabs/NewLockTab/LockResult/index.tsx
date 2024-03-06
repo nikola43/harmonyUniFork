@@ -1,17 +1,17 @@
-import React from "react";
-import styled from 'styled-components'
-import { TYPE } from "theme";
+import React from 'react'
+import uniLogo from 'assets/images/token-logo.png';
 import { ResponsiveButtonEmpty, ResponsiveButtonSecondary } from "components/Button";
-import { ArrowLeft, ArrowUpRight } from "react-feather";
-import { setLockerStep, useLockerState } from "state/locker/locker.store";
-import Row from "components/Row";
-import { MdLabel, MdLock, MdReplay, MdWaterDrop } from "react-icons/md";
-import { FaCopy } from "react-icons/fa";
 import CircularProgressWithContent from "components/CircularProgressWithContent";
-import uniLogo from 'assets/images/token-logo.png'
-import LockResultTab from "components/TabComponent/LockResultTab";
 import Column from "components/Column";
-import DateAndTimePickers_Result from "components/DateAndTimePickers/DateAndTimePickers_Result";
+import DateAndTimePickersResult from "components/DateAndTimePickers/DateAndTimePickers_Result";
+import Row from "components/Row";
+import LockResultTab from "components/TabComponent/LockResultTab";
+import { ArrowLeft, ArrowUpRight } from "react-feather";
+import { FaCopy } from "react-icons/fa";
+import { MdLock, MdReplay, MdWaterDrop } from "react-icons/md";
+import { setLockerStep, useLockerState } from "state/locker/locker.store";
+import styled from 'styled-components';
+import { TYPE } from "theme";
 
 const BackButton = styled(ResponsiveButtonEmpty)`
   color: white;
@@ -187,7 +187,7 @@ function LockResult() {
                     <TYPE.text_xxs color={"white"} >7.9266 univ2</TYPE.text_xxs>
                 </Column>
                 <Column style={{ alignItems: "right" }}>
-                    <DateAndTimePickers_Result />
+                    <DateAndTimePickersResult />
                 </Column>
             </Row>
             <hr style={{ borderTop: "none", borderBottom: "1px solid #92c9eb" }} />

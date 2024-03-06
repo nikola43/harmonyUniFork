@@ -1,9 +1,9 @@
-import { ChainId, TokenAmount } from 'constants/uniswap'
 import React from 'react'
+import { TokenAmount } from 'constants/uniswap'
 import { X } from 'react-feather'
 import styled from 'styled-components'
 import tokenLogo from '../../assets/images/token-logo.png'
-import { UNI } from '../../constants'
+// import { UNI } from '../../constants'
 // import { useTotalSupply } from '../../data/TotalSupply'
 import { useActiveWeb3React } from '../../hooks'
 // import { useMerkleDistributorContract } from '../../hooks/useContract'
@@ -11,7 +11,7 @@ import { useActiveWeb3React } from '../../hooks'
 // import { useTotalUniEarned } from '../../state/stake/hooks'
 import { useAggregateUniBalance } from '../../state/wallet/hooks'
 // import { ExternalLink, StyledInternalLink, TYPE, UniTokenAnimated } from '../../theme'
-import { ExternalLink, TYPE, UniTokenAnimated } from '../../theme'
+import { TYPE, UniTokenAnimated } from '../../theme'
 // import { computeUniCirculation } from '../../utils/computeUniCirculation'
 // import useUSDCPrice from '../../utils/useUSDCPrice'
 import { AutoColumn } from '../Column'
@@ -42,8 +42,8 @@ const StyledClose = styled(X)`
  * Content for balance stats modal
  */
 export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowUniBalanceModal: any }) {
-  const { account, chainId } = useActiveWeb3React()
-  const uni = chainId ? UNI[chainId] : undefined
+  const { account } = useActiveWeb3React()
+  // const uni = chainId ? UNI[chainId] : undefined
 
   const total = useAggregateUniBalance()
   // const uniBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, uni)

@@ -1,25 +1,22 @@
-import React from "react";
-import Row, { AutoRow } from "components/Row";
-import styled from 'styled-components'
-import { TYPE } from "theme";
-import uniLogo from 'assets/images/token-logo.png'
-import { ButtonEmpty, ResponsiveButtonSecondary } from "components/Button";
-import { BlueCardShadow } from "components/Card";
-import { setEditStep, setLockerStep, useLockerState } from "state/locker/locker.store";
-import Column from "components/Column";
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { MdAvTimer, MdLockClock, MdPerson, MdPlusOne, MdSettings } from "react-icons/md";
+import { BlueCardShadow } from "components/Card";
+import Column from "components/Column";
+import Row from "components/Row";
+import React from "react";
 import { FaPlus } from "react-icons/fa";
+import { MdAvTimer, MdPerson, MdSettings } from "react-icons/md";
+import { useLockerState } from "state/locker/locker.store";
+import { TYPE } from "theme";
 
 
 function EditPair() {
   const [editStep] = useLockerState("editStep");
 
-  const handlePairSelect = () => {
-    setEditStep("pair_selected")
-  }
+  // const handlePairSelect = () => {
+  //   setEditStep("pair_selected")
+  // }
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 

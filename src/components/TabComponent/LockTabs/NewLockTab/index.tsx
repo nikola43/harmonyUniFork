@@ -1,23 +1,24 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { useTranslation } from 'react-i18next'
-import styled, { css } from 'styled-components'
-import { darken, lighten } from 'polished'
+import uniLogo from 'assets/images/token-logo.png'
 import { ButtonSecondary } from 'components/Button'
-import Row, { AutoRow, RowBetween } from 'components/Row'
 import { BlueCardShadow } from 'components/Card'
-import { SearchInput } from 'components/SearchModal/styleds'
-import LockPairCard from './LockPairCard'
-import LockPair from './LockPair'
 import Loader from 'components/Loader'
-import useENSName from 'hooks/useENSName'
+import Row, { AutoRow, RowBetween } from 'components/Row'
+import { SearchInput } from 'components/SearchModal/styleds'
+// import useENSName from 'hooks/useENSName'
 import { useHasSocks } from 'hooks/useSocksBalance'
+import { darken, lighten } from 'polished'
+import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useWalletModalToggle } from 'state/application/hooks'
+import { useLockerState } from 'state/locker/locker.store'
 import { isTransactionRecent, useAllTransactions } from 'state/transactions/hooks'
 import { TransactionDetails } from 'state/transactions/reducer'
+import styled, { css } from 'styled-components'
 import { TYPE } from '../../../../theme'
-import uniLogo from 'assets/images/token-logo.png'
-import { useLockerState } from 'state/locker/locker.store'
+import LockPair from './LockPair'
+import LockPairCard from './LockPairCard'
 
 const Web3StatusGeneric = styled(ButtonSecondary)`
   ${({ theme }) => theme.flexRowNoWrap}
@@ -104,9 +105,9 @@ const SOCK = (
 
 function Web3StatusLock() {
   const { t } = useTranslation()
-  const { account, error } = useWeb3React()
+  const { account } = useWeb3React()
 
-  const { ENSName } = useENSName(account ?? undefined)
+  // const { ENSName } = useENSName(account ?? undefined)
 
   const allTransactions = useAllTransactions()
 
