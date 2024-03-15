@@ -188,11 +188,12 @@ const useAllPairs = (lpTokens) : Pair[] => {
 
 export const usePairs = () : Pair[] => {
     const { account, library, chainId } = useActiveWeb3React()
+
     const lockerContract = getLockerContract(chainId, library)
 
     const numLockedTokens = useSingleCallResult(lockerContract, 'getUserNumLockedTokens', [account])
     const lockedTokens = useSingleContractMultipleData(
-        lockerContract, 
+        account ? lockerContract : undefined, 
         'getUserLockedTokenAtIndex', 
         new Array(numLockedTokens?.result?.[0].toNumber()).fill(0).map((_, index) => [account, String(index)])
     )?.filter(state => state.valid && !state.loading && state.result).map(state => state.result[0])
