@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import uniLogo from 'assets/images/token-logo.png'
 import { ButtonSecondary } from 'components/Button'
@@ -19,6 +19,9 @@ import styled, { css } from 'styled-components'
 import { TYPE } from '../../../../theme'
 import LockPair from './LockPair'
 import LockPairCard from './LockPairCard'
+import { toV2LiquidityToken, useTrackedTokenPairs } from 'state/user/hooks'
+import { useTokenBalancesWithLoadingIndicator } from 'state/wallet/hooks'
+import { Pair, usePair, usePairs } from 'state/locker/hooks'
 
 const Web3StatusGeneric = styled(ButtonSecondary)`
   ${({ theme }) => theme.flexRowNoWrap}
@@ -107,7 +110,11 @@ function Web3StatusLock() {
   const { t } = useTranslation()
   const { account } = useWeb3React()
 
+  // const [pairSelected] = useLockerState("pairSelected");
+
   // const { ENSName } = useENSName(account ?? undefined)
+  const [pairAddress, setPairAddress] = useState()
+  const [searchQuery, setSearchQuery] = useState('')
 
   const allTransactions = useAllTransactions()
 
@@ -121,6 +128,49 @@ function Web3StatusLock() {
   const hasPendingTransactions = !!pending.length
   const hasSocks = useHasSocks()
   const toggleWalletModal = useWalletModalToggle()
+
+  const handleInput = (e) => {
+    const query = e.target.value
+    if(!query || /^(0|0x|0x[\da-fA-F]{0,40})$/.test(query)) {
+      setSearchQuery(query)
+      if(/^0x[\da-fA-F]{0,40}$/.test(query))
+        setPairAddress(query)
+      else
+        setPairAddress(undefined)
+    } else
+      setPairAddress(undefined)
+  }
+
+  const trackedTokenPairs = useTrackedTokenPairs()
+  const tokenPairsWithLiquidityTokens = useMemo(
+    () => trackedTokenPairs.map(tokens => ({ liquidityToken: toV2LiquidityToken(tokens), tokens })),
+    [trackedTokenPairs]
+  )
+  const liquidityTokens = useMemo(() => tokenPairsWithLiquidityTokens.map(tpwlt => tpwlt.liquidityToken), [
+    tokenPairsWithLiquidityTokens
+  ])
+  const [v2PairsBalances] = useTokenBalancesWithLoadingIndicator(
+    account ?? undefined,
+    liquidityTokens
+  )
+
+  // fetch the reserves for all V2 pools in which the user has a balance
+  const liquidityTokensWithBalances = useMemo(
+    () =>
+      tokenPairsWithLiquidityTokens.filter(({ liquidityToken }) =>
+        v2PairsBalances[liquidityToken.address]?.greaterThan('0')
+      ),
+    [tokenPairsWithLiquidityTokens, v2PairsBalances]
+  )
+
+  const pairsLocked = usePairs()
+
+  const pairsFromLiquidity = useMemo(
+    () => liquidityTokensWithBalances.filter(({liquidityToken}) => !pairsLocked?.find(pair => pair.address===liquidityToken.address)),
+    [liquidityTokensWithBalances, pairsLocked]
+  )
+
+  const pairFound = usePair(pairAddress)
 
   if (account) {
     return (
@@ -141,15 +191,25 @@ function Web3StatusLock() {
               id="pair-search-input"
               placeholder={t('Uniswap V2 pair address...')}
               autoComplete="off"
-            // value={searchQuery}
+              value={searchQuery}
             // ref={inputRef as RefObject<HTMLInputElement>}
-            // onChange={handleInput}
+              onChange={handleInput}
             // onKeyDown={handleEnter}
             />
             <TYPE.text_xxs color={'primary5'} textAlign={'center'}>e.g. 0xc70bb2736e218861dca818d1e9f7a1930fe61e5b</TYPE.text_xxs>
-
-            <LockPairCard />
-
+            <AutoRow gap="0.2rem" style={{marginTop: '0.5em'}}>
+              {
+                !!pairFound &&// pairsFromLiquidity.length==0 &&
+                <LockPairCard pair={pairFound}/>
+              }
+              {
+                !pairFound && pairsFromLiquidity.map(({liquidityToken, tokens}) => <LockPairCard key={`pair-${liquidityToken.address}`} pair={{ ...liquidityToken, token0: tokens[0], token1: tokens[1], balance: v2PairsBalances[liquidityToken.address]} as Pair}/>)
+              }
+              {
+                !pairFound &&
+                pairsLocked.map(pair => <LockPairCard key={`pair-locked-${pair.address}`} pair={pair}/>)
+              }
+            </AutoRow>
           </>
         )}
       </Web3StatusConnected>

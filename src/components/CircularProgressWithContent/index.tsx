@@ -1,45 +1,44 @@
 import React from 'react'
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
+import styled from 'styled-components';
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            position: "relative",
-            "& .MuiCircularProgress-root": {
-                position: "absolute",
-                // Moving this a little off the edge prevents horizontal scrollbar from flickering in and out
-                top: 2,
-                left: 2,
-            },
-            // "& .MuiFab-sizeSmall": {
-            //     position: "absolute",
-            //     top: 9,
-            //     right: 9
-            // }
-        },
-        bottom: {
-            color: "white",
-        },
-        top: {
-            color: '#1a90ff',
-            animationDuration: '550ms',
-            position: 'absolute',
-            left: 0,
-        },
-        circle: {
-            strokeLinecap: 'round',
-        },
-    }),
-);
+const Circle = styled.div<{ size?: number }>`
+    position: relative;
+    .central {
+        padding: 5px;
+        height: ${ (props) => (props.size ?? 50) + 6 }px;
+        width: ${ (props) => (props.size ?? 50) + 6}px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .progress {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        transform: rotate(-90deg);
+        circle {
+            vector-effect: non-scaling-stroke;
+        }
+    }
+`
 
 export default function CircularProgressWithContent(props) {
-    const classes = useStyles();
+    const radius = Math.floor((props.size ?? 50) / 2)
+    const circumference = Math.PI * (radius + 1) * 2
     return (
-        <div className={classes.root}>
-            {props.content}
-            <CircularProgress variant="determinate" size={46} thickness={2} value={100} className={classes.bottom} />
-            <CircularProgress variant="determinate" size={46} thickness={2} value={24.7} className={classes.top} />
-        </div>
+        <Circle size={props.size}>
+            <div className="central">{props.content}</div>
+            <div className="progress">
+                <svg viewBox={`-2 -2 ${radius*2 + 4} ${radius*2 + 4}`}>
+                    <circle cx={radius} cy={radius} r={radius} fill="none" stroke-width="2" stroke="#fff7" />
+                    <circle cx={radius} cy={radius} r={radius} fill="none" stroke-width="2" stroke="#fff" strokeDasharray={circumference} strokeDashoffset={circumference * (1 - props.value / 100)} />
+                </svg>
+            </div>
+            {/* <div className="progress">
+                <CircularProgress variant="static" color="secondary" thickness={2} value={props.value} size="100%" />
+            </div> */}
+        </Circle>
     );
 }

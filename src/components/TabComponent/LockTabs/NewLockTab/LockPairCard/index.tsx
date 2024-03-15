@@ -2,10 +2,13 @@ import React from "react";
 import Row, { AutoRow } from "components/Row";
 import styled from 'styled-components'
 import { TYPE } from "theme";
-import uniLogo from 'assets/images/token-logo.png'
 import { ResponsiveButtonSecondary } from "components/Button";
 import { BlueCardShadow } from "components/Card";
-import { setLockerStep, useLockerState } from "state/locker/locker.store";
+import { selectPair, setLockerStep } from "state/locker/locker.store";
+import Copy from "components/AccountDetails/Copy";
+import { unwrappedToken } from "utils/wrappedCurrency";
+import DoubleCurrencyLogo from "components/DoubleLogo";
+import { Pair } from "state/locker/hooks";
 
 const LockPairCardWrapper = styled(BlueCardShadow) <{ width?: string; padding?: string; border?: string; borderRadius?: string }>`
   padding: 16px;
@@ -24,47 +27,61 @@ const ButtonPairContinue = styled(ResponsiveButtonSecondary)`
   width: 100%;
 `
 
-function LockPairCard() {
-    const [isLplocked] = useLockerState("isLplocked");
+const PairLogo = styled(DoubleCurrencyLogo)`
+`
+
+function LockPairCard({pair}: {pair: Pair}) {
 
     const handlePairSelect = () => {
         setLockerStep("pair_selected")
+        selectPair(pair.address)
     }
+
+    const handleLockSelect = () => {
+        setLockerStep("lock_result", true)
+        selectPair(pair.address)
+    }
+
+    const currency0 = unwrappedToken(pair.token0)
+    const currency1 = unwrappedToken(pair.token1)
 
     return (
         <LockPairCardWrapper>
             {
-                isLplocked === true ?
-                    <Row marginY={10} justify='space-between'>
+                pair.locks && pair.locks.length
+                ?   <Row marginY={10} justify='space-between' onClick={handleLockSelect}>
                         <Row>
-                            <img width={'30px'} src={uniLogo} alt="logo" />
-                            <img width={'30px'} src={uniLogo} alt="logo" />
-                            <TYPE.text_xs fontWeight={500} color={"white"} padding={2}>
-                                UNCX / WETH
+                            <PairLogo currency0={currency0} currency1={currency1} size={30}/>
+                            <TYPE.text_xs fontWeight={500} color={"white"} padding={2} wrap="nowrap">
+                                {pair.token0.symbol} / {pair.token1.symbol}
                             </TYPE.text_xs>
                         </Row>
-                        <TYPE.text_xs color={"white"}>
-                            0x47cF...782E
-                        </TYPE.text_xs>
-                    </Row> :
-                    <AutoRow>
+                        <Row justify="flex-end">
+                            <TYPE.text_xs color={"white"}>
+                                {pair.address.slice(0, 6)}...{pair.address.slice(-4)}
+                            </TYPE.text_xs>
+                            <Copy toCopy={pair.address}/>
+                        </Row>
+                    </Row> 
+                :   <AutoRow>
                         <TYPE.text_sm fontWeight={600} color={"white"}>
                             Pair found
                         </TYPE.text_sm>
                         <Row marginY={10} justify='space-between'>
                             <Row>
-                                <img width={'30px'} src={uniLogo} alt="logo" />
-                                <img width={'30px'} src={uniLogo} alt="logo" />
+                                <PairLogo currency0={currency0} currency1={currency1} size={30}/>
                                 <TYPE.text_xs fontWeight={500} color={"white"} padding={2}>
-                                    UNCX / WETH
+                                    {pair.token0.symbol} / {pair.token1.symbol}
                                 </TYPE.text_xs>
+                                {/* <Copy toCopy={pair.address}/> */}
                             </Row>
                             <TYPE.text_xs color={"white"} padding={2}>
-                                9999.9999
+                                {pair.balance?.toFixed(6)}
                             </TYPE.text_xs>
                         </Row>
                         <ButtonPairContinue
                             onClick={handlePairSelect}
+                            disabled={!pair.balance || pair.balance.equalTo('0')}
                         >
                             <TYPE.text_xs fontWeight={500} color={"white"} textAlign={'center'}>CONTINUE</TYPE.text_xs>
                         </ButtonPairContinue>

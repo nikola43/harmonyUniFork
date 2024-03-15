@@ -1,30 +1,66 @@
 import { createGlobalState } from "react-hooks-global-state";
 
+type Step = "initial" | "pair_selected" | "lock_success" | "lock_result"
+
 interface LockerStore {
-    lockerStep: "initial" | "pair_selected" | "lock_success" | "lock_result";
-    editStep: "initial" | "pair_selected";
+    lockerStep: Step
+    editStep: Step
+    pairSelected: string | undefined
     isLplocked: boolean
+    history: Step[]
 }
 
 // Create a single global state object
-const deployerStore = {
+const store = {
     lockerStep: "initial",
     editStep: "initial",
-    isLplocked: false
+    pairSelected: undefined,
+    isLplocked: false,
+    history: []
 } as LockerStore;
 
-const { useGlobalState: useLockerState, setGlobalState } = createGlobalState(deployerStore);
+const { useGlobalState: useLockerState, getGlobalState, setGlobalState } = createGlobalState(store);
 
-export const setLockerStep = (step: LockerStore["lockerStep"]) => {
+export const setLockerStep = (step: Step, add: boolean = false) => {
+    const lastStep = getGlobalState("lockerStep")
+    const history = getGlobalState("history")
+    if(add)
+        setGlobalState("history", [...history, lastStep])
+    else
+        setGlobalState("history", [lastStep])
     setGlobalState("lockerStep", () => step);
 };
 
-export const setEditStep = (step: LockerStore["editStep"]) => {
+export const setEditStep = (step: Step, add: boolean = false) => {
+    const lastStep = getGlobalState("editStep")
+    const history = getGlobalState("history")
+    if(add)
+        setGlobalState("history", [...history, lastStep])
+    else
+        setGlobalState("history", [lastStep])
     setGlobalState("editStep", () => step);
 };
 
 export const setIsLpLocked = (isLocked: boolean) => {
     setGlobalState("isLplocked", () => isLocked);
 };
+
+export const selectPair = (pair: string | undefined) => {
+    setGlobalState("pairSelected", pair)
+}
+
+export const backLockerStep = () => {
+    const history = getGlobalState("history")
+    const step = history.pop()
+    setGlobalState("history", [...history])
+    setGlobalState("lockerStep", step)
+}
+
+export const backEditStep = () => {
+    const history = getGlobalState("history")
+    const step = history.pop()
+    setGlobalState("history", [...history])
+    setGlobalState("editStep", step)
+}
 
 export { useLockerState };

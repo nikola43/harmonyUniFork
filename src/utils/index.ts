@@ -4,7 +4,10 @@ import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
 import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
-import { ROUTER_ADDRESS } from '../constants'
+import ERC20_ABI from '../constants/abis/erc20.json'
+import IUniswapV2LockerABI from 'constants/abis/UniswapV2Locker.json'
+import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
+import { LOCKER_ADDRESS, ROUTER_ADDRESS } from '../constants'
 import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER } from 'constants/uniswap'
 import { TokenAddressMap } from '../state/lists/hooks'
 
@@ -108,6 +111,18 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
 // account is optional
 export function getRouterContract(_: number, library: Web3Provider, account?: string): Contract {
   return getContract(ROUTER_ADDRESS, IUniswapV2Router02ABI, library, account)
+}
+
+export function getLockerContract(_: number, library: Web3Provider, account?: string): Contract {
+  return getContract(LOCKER_ADDRESS, IUniswapV2LockerABI, library, account)
+}
+
+export function getTokenContract(tokenAddress: string, library: Web3Provider, account?: string): Contract {
+  return getContract(tokenAddress, ERC20_ABI, library, account)
+}
+
+export function getPairContract(pairAddress: string, library: Web3Provider, account?: string): Contract {
+  return getContract(pairAddress, IUniswapV2PairABI, library, account)
 }
 
 export function escapeRegExp(string: string): string {

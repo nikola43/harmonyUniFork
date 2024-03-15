@@ -48,13 +48,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function DateAndTimePickers() {
     const classes = useStyles();
-
+    const defaultDate = new Date(Date.now() + 30 * 86400000).toLocaleString('sv').slice(0, -3)
     return (
         <form className={classes.container} noValidate>
             <TextField
-                id="datetime-local"
                 type="datetime-local"
-                defaultValue="2024-05-24T10:30"
+                defaultValue={defaultDate}
                 className={classes.textField}
                 InputLabelProps={{
                     shrink: true,

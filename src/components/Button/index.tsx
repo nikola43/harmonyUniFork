@@ -296,11 +296,14 @@ export const ResponsiveButtonSecondary = styled(ButtonSecondary)`
   width: fit-content;
   border-radius: 24px;
   padding: 14px; /* Adjust padding for larger screens */
-  &:hover {
+  &:hover:not(:disabled) {
     background: ${({ theme }) => theme.primary3};
   }
   &:active {
     background: ${({ theme }) => theme.primary4};
+  }
+  &:disabled {
+    cursor: not-allowed;
   }
   @media (max-width: 1024px) {
     padding: 10px;

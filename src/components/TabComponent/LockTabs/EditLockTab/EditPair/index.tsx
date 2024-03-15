@@ -4,15 +4,19 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { BlueCardShadow } from "components/Card";
 import Column from "components/Column";
 import Row from "components/Row";
-import React from "react";
+import React, { useMemo } from "react";
 import { FaPlus } from "react-icons/fa";
 import { MdAvTimer, MdPerson, MdSettings } from "react-icons/md";
+import { usePair } from 'state/locker/hooks';
 import { useLockerState } from "state/locker/locker.store";
 import { TYPE } from "theme";
 
 
 function EditPair() {
   const [editStep] = useLockerState("editStep");
+  const [pairSelected] = useLockerState("pairSelected");
+
+  console.log("editStep", editStep)
 
   // const handlePairSelect = () => {
   //   setEditStep("pair_selected")
@@ -28,14 +32,25 @@ function EditPair() {
     setAnchorEl(null);
   };
 
+  const pair = usePair(pairSelected)
+
+  const totalLocked = useMemo(() => pair ? pair.locks.reduce((sum, lock) => {
+    if(sum)
+        return sum.add(lock)
+    return lock
+}, undefined) : undefined, [pair])
+
+  const lockedPercent = useMemo(() => totalLocked?.divide(pair?.totalSupply).multiply('100').toFixed(2), [totalLocked, pair])
+
+
   return (
     editStep === "pair_selected" &&
     <>
       <BlueCardShadow>
         <Row justify="space-between">
           <Column>
-            <TYPE.text_sm fontWeight={600} color={"white"} >24.8% LOCKED</TYPE.text_sm>
-            <TYPE.text_xxs color={"white"} marginY={"4px"}>7.83 UNI-V2</TYPE.text_xxs>
+            <TYPE.text_sm fontWeight={600} color={"white"} >{lockedPercent}% LOCKED</TYPE.text_sm>
+            <TYPE.text_xxs color={"white"} marginY={"4px"}>{totalLocked?.toFixed(6)} UNI-V2</TYPE.text_xxs>
             <TYPE.text_xs color={"white"} marginTop={"12px"}>Tue 20 Feb 2024 12:00</TYPE.text_xs>
           </Column>
           <Column style={{ alignSelf: "start" }}>
