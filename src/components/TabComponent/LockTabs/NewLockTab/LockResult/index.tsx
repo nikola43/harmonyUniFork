@@ -10,7 +10,6 @@ import { backLockerStep, setLockerStep, useLockerState } from "state/locker/lock
 import styled from 'styled-components';
 import { TYPE } from "theme";
 import { LockedAmount, usePair } from 'state/locker/hooks';
-import { Fraction, TokenAmount } from 'constants/uniswap';
 import { Dots } from 'components/swap/styleds';
 import CopyHelper from 'components/AccountDetails/Copy';
 import { unwrappedToken } from 'utils/wrappedCurrency';
@@ -22,6 +21,8 @@ import { useActiveWeb3React } from 'hooks';
 import { ethers } from 'ethers';
 
 import "../../../LockResultTabs.css";
+import Decimal from '../../Decimal';
+import { DateTime, TimeDiff } from '../../Time';
 
 const BackButton = styled(ResponsiveButtonEmpty)`
   color: white;
@@ -63,47 +64,6 @@ const ButtonOutline = styled(ResponsiveButtonSecondary)`
     }
 `
 
-const Decimal = ({ value, abbr = false, decimals = 2, postfix, prefix }: { value: TokenAmount | Fraction, abbr?: boolean, decimals?: number, prefix?: string, postfix?: string }) => {
-    if(value===undefined)
-        return <></>
-    const units = { 3: 'K', 6: 'M', 9: 'B'}
-    const size = value.toFixed(0).length
-    let unit = 0
-    if(abbr) for(const n in units) {
-        if(size > Number(n))
-            unit = Number(n)
-    }
-    const [part1, part2] = value.divide(String(10 ** unit)).toFixed(18).split('.')
-    if(Number(part1)===0 && part2) {
-      const matches = /^(0*)([^0]\d*)(0*)$/.exec(part2)
-      if(matches && matches[1]?.length > 2) {
-        return <span>
-            { prefix ? prefix : '' }
-            <span dangerouslySetInnerHTML={{ __html: [part1?.replace(/\B(?=(\d{3})+(?!\d))/g, ",") ?? 0, `0<sub>${matches[1].length}</sub>${matches[2]?.slice(0, decimals)}`].join('.') }} />
-            { unit ? units[unit] : '' }
-            { postfix ? postfix : '' }
-        </span>
-      }
-    }
-    return <span>
-        { prefix ? prefix : '' }
-        <span dangerouslySetInnerHTML={{ __html: [part1?.replace(/\B(?=(\d{3})+(?!\d))/g, ",") ?? 0, part2?.replace(/0*$/, '')?.slice(0, decimals)].filter(p => !!p).join('.') }}/>
-        { unit ? units[unit] : '' }
-        { postfix ? postfix : '' }
-    </span>
-}
-
-const formatTime = (dt) => {
-    const time = new Date(dt)
-    return new Intl.DateTimeFormat('en-US', {
-      year: "numeric",
-      month: "numeric",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit"
-    }).format(time)
-}
-
 const ItemDetail = styled.div`
     background: #0003;
     padding: 0.5em;
@@ -114,26 +74,7 @@ const ItemDetail = styled.div`
 
 const LockedItem = ({ lock }: {lock: LockedAmount }) => {
     const [expanded, setExpand] = useState(false)
-    const [now, setNow] = useState<number>(Date.now())
-
-    useEffect(() => {
-        const timer = setInterval(() => setNow(Date.now()), 30000)
-        return () => clearInterval(timer)
-    }, [])
     
-    const timeAfter = useCallback((timeUnlock) => {
-        let mins = Math.floor((timeUnlock.getTime() - now) / 60000) + 1
-        if(mins < 60)
-            return `in ${mins} minute${mins===1 ? '' : 's'}`
-        let hours = Math.floor(mins / 60)
-        mins = mins % 60
-        if(hours < 24)
-            return `in ${hours} hour${hours===1 ? '' : 's'} ${mins > 0 ? `${mins} minute${mins===1 ? '' : 's'}` : ''}`
-        let days = Math.floor(hours / 24)
-        hours = hours % 24
-        return `in ${days} day${days===1 ? '' : 's'} ${hours > 0 ? `${hours} hour${hours===1 ? '' : 's'}` : ''}`
-    }, [now])
-
     return <div onClick={() => setExpand(!expanded)}>
         <Row justify="space-between" marginY={"4px"}>
             <Column style={{ alignItems: "flex-start" }}>
@@ -145,10 +86,10 @@ const LockedItem = ({ lock }: {lock: LockedAmount }) => {
             <Row justify="flex-end" width="unset" gap="8px">
                 <Column style={{ alignItems: "flex-end" }}>
                     <TYPE.text_xs color={"white"} fontWeight={"bold"}>
-                        {timeAfter(lock.unlockDate)}
+                        <TimeDiff time={lock.unlockDate} prefix="in" />
                     </TYPE.text_xs>
                     <TYPE.text_xxs color={"white"} >
-                        {formatTime(lock.unlockDate)}
+                        <DateTime time={lock.unlockDate} />
                     </TYPE.text_xxs>
                 </Column>
                 <MdLockOutline size="24px"/>
@@ -171,27 +112,8 @@ const LockedItem = ({ lock }: {lock: LockedAmount }) => {
 
 const UnlockedItem = ({ lock }: {lock: LockedAmount }) => {
     const [expanded, setExpand] = useState(false)
-    const [now, setNow] = useState<number>(Date.now())
     const [attemptingWithdraw, setAttemptingWithdraw] = useState<boolean>(false)
     const { chainId, library, account } = useActiveWeb3React()
-
-    useEffect(() => {
-        const timer = setInterval(() => setNow(Date.now()), 30000)
-        return () => clearInterval(timer)
-    }, [])
-        
-    const timeAgo = useCallback((timeUnlock) => {
-        let mins = Math.floor((now - timeUnlock.getTime()) / 60000) + 1
-        if(mins < 60)
-            return `${mins} minute${mins===1 ? '' : 's'} ago`
-        let hours = Math.floor(mins / 60)
-        mins = mins % 60
-        if(hours < 24)
-            return `${hours} hour${hours===1 ? '' : 's'} ${mins > 0 ? `${mins} minute${mins===1 ? '' : 's'}` : ''} ago`
-        let days = Math.floor(hours / 24)
-        hours = hours % 24
-        return `${days} day${days===1 ? '' : 's'} ${hours > 0 ? `${hours} hour${hours===1 ? '' : 's'}` : ''} ago`
-    }, [now])
 
     const addTransaction = useTransactionAdder()
 
@@ -230,10 +152,10 @@ const UnlockedItem = ({ lock }: {lock: LockedAmount }) => {
             <Row justify="flex-end" width="unset" gap="8px">
                 <Column style={{ alignItems: "flex-end" }}>
                     <TYPE.text_xs color={"white"} fontWeight={"bold"}>
-                        {timeAgo(lock.unlockDate)}
+                        <TimeDiff time={lock.unlockDate} postfix="ago" />
                     </TYPE.text_xs>
                     <TYPE.text_xxs color={"white"} >
-                        {formatTime(lock.unlockDate)}
+                        <DateTime time={lock.unlockDate} />
                     </TYPE.text_xxs>
                 </Column>
                 <MdLockOutline size="24px"/>

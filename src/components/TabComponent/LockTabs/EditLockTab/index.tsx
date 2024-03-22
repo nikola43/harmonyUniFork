@@ -95,7 +95,7 @@ const EditLockTab = () => {
 
     return (
         <div className="EditLockTab">
-            < BlueCardShadow >
+            <BlueCardShadow>
                 {
                     editStep === "initial" ?
                         <AutoRow>
