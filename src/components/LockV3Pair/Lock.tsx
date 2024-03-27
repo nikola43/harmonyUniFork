@@ -199,7 +199,7 @@ export default function Lock({ pool, lock } : { pool: Pool, lock: any }) {
     const poolState = useSingleCallResult(UniswapV3Pool, 'slot0')
 
     const reserves = useMemo(() => {
-        if(!poolState.loading && poolState.valid) {
+        if(!poolState.loading && poolState.valid && poolState.result) {
             return getTokenAmounts(
                 Number(pool.liquidity.toString()),
                 Number(poolState.result.sqrtPriceX96.toString()),

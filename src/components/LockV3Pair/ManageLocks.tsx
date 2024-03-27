@@ -15,6 +15,7 @@ import uniswapV3FactoryABI from "../../constants/abis/UniswapV3Factory.json"
 import { Pool } from "./types"
 import Loading from "./Loading"
 import Lock from "./Lock"
+import Column from "components/Column"
 
 function Locks({ amm } : { amm: string }) {
     const { chainId, library, account } = useActiveWeb3React()
@@ -99,11 +100,13 @@ export default function ManageLock() {
                                 Your Locks
                             </TYPE.text_lg>
                         </Row>
+                        <Column gap="0.5em" style={{width: '100%'}}>
                         {
                             positionManagers.map((_pm) =>
                                 <Locks key={`pm-${_pm.address}`} amm={_pm.title} />
                             )
                         }
+                        </Column>
                     </AutoRow>
                 </>
             }

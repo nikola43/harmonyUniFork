@@ -359,7 +359,7 @@ export default function Locking() {
                 <Row gap="1em">
                     <ButtonTx onClick={handleApprove} disabled={attemptingApprove || approved}>
                         <TYPE.text_xs fontWeight={500} color={"white"} textAlign={'center'} marginBottom={"4px"}>
-                            {!approved || attemptingApprove ? (
+                            {!approved && attemptingApprove ? (
                                 <Dots>Approving</Dots>
                             ) : (
                                 'Approve'
