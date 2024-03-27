@@ -4,11 +4,11 @@ import styled from 'styled-components'
 import { TYPE } from "theme";
 import { ResponsiveButtonSecondary } from "components/Button";
 import { BlueCardShadow } from "components/Card";
-import { selectPair, setLockerStep } from "state/locker/locker.store";
+import { selectPair, setLockerStep } from "state/lockerV2/locker.store";
 import Copy from "components/AccountDetails/Copy";
 import { unwrappedToken } from "utils/wrappedCurrency";
 import DoubleCurrencyLogo from "components/DoubleLogo";
-import { Pair } from "state/locker/hooks";
+import { Pair } from "state/lockerV2/hooks";
 
 const LockPairCardWrapper = styled(BlueCardShadow) <{ width?: string; padding?: string; border?: string; borderRadius?: string }>`
   padding: 16px;

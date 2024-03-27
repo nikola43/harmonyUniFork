@@ -12,7 +12,7 @@ import { darken, lighten } from 'polished'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useWalletModalToggle } from 'state/application/hooks'
-import { useLockerState } from 'state/locker/locker.store'
+import { useLockerState } from 'state/lockerV2/locker.store'
 import { isTransactionRecent, useAllTransactions } from 'state/transactions/hooks'
 import { TransactionDetails } from 'state/transactions/reducer'
 import styled, { css } from 'styled-components'
@@ -21,7 +21,8 @@ import LockPair from './LockPair'
 import LockPairCard from './LockPairCard'
 import { toV2LiquidityToken, useTrackedTokenPairs } from 'state/user/hooks'
 import { useTokenBalancesWithLoadingIndicator } from 'state/wallet/hooks'
-import { Pair, usePair, usePairs } from 'state/locker/hooks'
+import { Pair, usePair, usePairs } from 'state/lockerV2/hooks'
+import Loading from 'components/LockV3Pair/Loading'
 
 const Web3StatusGeneric = styled(ButtonSecondary)`
   ${({ theme }) => theme.flexRowNoWrap}
@@ -197,19 +198,21 @@ function Web3StatusLock() {
             // onKeyDown={handleEnter}
             />
             <TYPE.text_xxs color={'primary5'} textAlign={'center'}>e.g. 0xc70bb2736e218861dca818d1e9f7a1930fe61e5b</TYPE.text_xxs>
-            <AutoRow gap="0.2rem" style={{marginTop: '0.5em'}}>
-              {
-                !!pairFound &&// pairsFromLiquidity.length==0 &&
-                <LockPairCard pair={pairFound}/>
-              }
-              {
-                !pairFound && pairsFromLiquidity.map(({liquidityToken, tokens}) => <LockPairCard key={`pair-${liquidityToken.address}`} pair={{ ...liquidityToken, token0: tokens[0], token1: tokens[1], balance: v2PairsBalances[liquidityToken.address]} as Pair}/>)
-              }
-              {
-                !pairFound &&
-                pairsLocked.map(pair => <LockPairCard key={`pair-locked-${pair.address}`} pair={pair}/>)
-              }
-            </AutoRow>
+            {
+              <AutoRow gap="0.2rem" style={{marginTop: '0.5em'}}>
+                {
+                  !!pairFound &&// pairsFromLiquidity.length==0 &&
+                  <LockPairCard pair={pairFound}/>
+                }
+                {
+                  !pairFound && pairsFromLiquidity.map(({liquidityToken, tokens}) => <LockPairCard key={`pair-${liquidityToken.address}`} pair={{ ...liquidityToken, token0: tokens[0], token1: tokens[1], balance: v2PairsBalances[liquidityToken.address]} as Pair}/>)
+                }
+                {
+                  !pairFound &&
+                  pairsLocked.map(pair => <LockPairCard key={`pair-locked-${pair.address}`} pair={pair}/>)
+                }
+              </AutoRow>
+            }
           </>
         )}
       </Web3StatusConnected>

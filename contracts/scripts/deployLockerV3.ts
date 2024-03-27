@@ -14,37 +14,27 @@ async function main() {
         colors.cyan("Account balance: ") +
         colors.yellow(formatEther(await deployer.getBalance()))
     );
-    console.log();
 
     
-    /*
-    const router = "0x52bfe8fE06c8197a8e3dCcE57cE012e13a7315EB";
-    const rContract = await ethers.getContractAt("UniswapV2Router", router);
-    const factory = await rContract.factory();
-    console.log({
-        factory
-    })
-    */
-    
-
-    
-    let contractName = "CountryList";
-    let contractFactory = await ethers.getContractFactory(contractName);
-    const countryListContract = await contractFactory.deploy()
-    await countryListContract.deployed();
+    const countryListContract = await ethers.getContractAt("CountryList", "0xB42747ad2c1DD9B2902Db1630C860A6D3F48dC8e")
     console.log("CountryList", countryListContract.address);
-    await updateABI(contractName);
 
+    const AUTO_COLLECT_ACCOUNT = deployer.address
+    const FEE_ADDR_LP = deployer.address
+    const FEE_ADDR_COLLECT = deployer.address
 
-    const factory = "0xA780FcBFF7c5232FDbEF4fc67313bEcFfdf64172";
-    contractName = "UniswapV2Locker";
-    contractFactory = await ethers.getContractFactory(contractName);
-    const uniswapV2Locker = await contractFactory.deploy(factory, countryListContract.address)
-    await uniswapV2Locker.deployed();
-    console.log("uniswapV2Locker", uniswapV2Locker.address);
-    await updateABI(contractName);
+    const contractFactory = await ethers.getContractFactory("contracts/LockerV3/UNCX_LiquidityLocker_UniV3_Flattend.sol:UNCX_LiquidityLocker_UniV3");
+    const uniswapV3Locker = await contractFactory.deploy(
+        countryListContract.address, 
+        AUTO_COLLECT_ACCOUNT,
+        FEE_ADDR_LP,
+        FEE_ADDR_COLLECT
+    )
+    await uniswapV3Locker.deployed();
+    console.log("uniswapV3Locker", uniswapV3Locker.address);
+    await updateABI("contracts/LockerV3/UNCX_LiquidityLocker_UniV3_Flattend.sol:UNCX_LiquidityLocker_UniV3");
 
-    await uniswapV2Locker.transferOwnership("0x00eED5EB220c73fD8D8Ca60589e120e53e78f3b8")
+    // await uniswapV3Locker.transferOwnership("0x00eED5EB220c73fD8D8Ca60589e120e53e78f3b8")
     
 
 }

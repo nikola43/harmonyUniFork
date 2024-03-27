@@ -35,7 +35,7 @@ export default function Lock() {
         <LockerButton
           id="lock-liquidity-v2"
           as={Link}
-          to="/lock/service"
+          to="/lock/v2pair"
         >
           <Row >
             <MdLock style={{ fontSize: "24px", marginRight: "10px" }} />
@@ -47,7 +47,7 @@ export default function Lock() {
         <LockerButton
           id="lock-liquidity-v3"
           as={Link}
-          to="/lock/service"
+          to="/lock/v3pair"
         >
           <Row style={{ width: "100%", textAlign: "left" }}>
             <MdLock style={{ fontSize: "24px", marginRight: "10px" }} />

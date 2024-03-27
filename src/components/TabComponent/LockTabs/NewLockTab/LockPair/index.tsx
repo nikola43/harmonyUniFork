@@ -7,8 +7,8 @@ import { LightCardShadow } from "components/Card";
 import { ResponsiveButtonEmpty, ResponsiveButtonPrimary, ResponsiveButtonSecondary } from "components/Button";
 import { TYPE } from "theme";
 import LockSuccess from "../LockSuccess";
-import { useLockerState, setLockerStep, backLockerStep } from 'state/locker/locker.store'
-import { usePair } from "state/locker/hooks";
+import { useLockerState, setLockerStep, backLockerStep } from 'state/lockerV2/locker.store'
+import { usePair } from "state/lockerV2/hooks";
 import CurrencyLogo from "components/CurrencyLogo";
 import { unwrappedToken } from "utils/wrappedCurrency";
 import { ETHER, TokenAmount } from "constants/uniswap";

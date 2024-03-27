@@ -8,6 +8,8 @@ export const ROUTER_ADDRESS = '0x0f8f19a8c7b74c36f14e746434dddc83fc5a343a' // ma
 
 export const LOCKER_ADDRESS = '0x111202638226d8b8d62d17d72c35f32002522452' // mainnet
 
+export const LOCKERV3_ADDRESS = '0x4d7D451c7b7eaF26494d4B4E5ee84AF6fC1C179F' // mainnet
+
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
 export { PRELOADED_PROPOSALS } from './proposals'
@@ -240,3 +242,21 @@ export const BLOCKED_ADDRESSES: string[] = [
   '0xA7e5d5A720f06526557c513402f2e6B5fA20b008',
   '0x8576aCC5C05D6Ce88f4e49bf65BdF0C62F91353C'
 ]
+
+export const UNISWAP_V3_POSITION_MANAGERS: any[] = [
+  { title: "Uniswap V3", address: "0xE4E259BE9c84260FDC7C9a3629A0410b1Fb3C114" },
+]
+
+export const FEE_SETTINGS: any = {
+  "DEFAULT": {
+      liquidity: 0.5, collect: 2
+  },
+  "LVP": {
+      liquidity: 0.8, collect: 1
+  },
+  "LLP": {
+      liquidity: 0.3, collect: 3.5
+  },
+}
+
+export const ETERNAL_LOCK = "115792089237316195423570985008687907853269984665640564039457584007913129639935"

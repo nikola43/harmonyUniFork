@@ -5,7 +5,7 @@ import NewLockTab from "components/TabComponent/LockTabs/NewLockTab";
 import EditLockTab from "components/TabComponent/LockTabs/EditLockTab";
 import "components/TabComponent/LockTabs.css";
 
-export default function LockService() {
+export default function LockV2Pair() {
   const [activeTab, setActiveTab] = useState("tab1");
 
   return (

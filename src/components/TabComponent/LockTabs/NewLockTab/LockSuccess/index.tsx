@@ -5,7 +5,7 @@ import { ResponsiveButtonEmpty, ResponsiveButtonSecondary } from "components/But
 import { ArrowLeft } from "react-feather";
 import { MdLock } from 'react-icons/md'
 import { ColumnCenter } from "components/Column";
-import { setLockerStep, useLockerState } from "state/locker/locker.store";
+import { setLockerStep, useLockerState } from "state/lockerV2/locker.store";
 import LockResult from "../LockResult";
 
 const BackButton = styled(ResponsiveButtonEmpty)`

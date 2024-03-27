@@ -6,8 +6,9 @@ import { BigNumber } from '@ethersproject/bignumber'
 import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
 import ERC20_ABI from '../constants/abis/erc20.json'
 import IUniswapV2LockerABI from 'constants/abis/UniswapV2Locker.json'
+import IUniswapV3LockerABI from 'constants/abis/UniswapV3Locker.json'
 import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
-import { LOCKER_ADDRESS, ROUTER_ADDRESS } from '../constants'
+import { LOCKERV3_ADDRESS, LOCKER_ADDRESS, ROUTER_ADDRESS } from '../constants'
 import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER } from 'constants/uniswap'
 import { TokenAddressMap } from '../state/lists/hooks'
 
@@ -115,6 +116,10 @@ export function getRouterContract(_: number, library: Web3Provider, account?: st
 
 export function getLockerContract(_: number, library: Web3Provider, account?: string): Contract {
   return getContract(LOCKER_ADDRESS, IUniswapV2LockerABI, library, account)
+}
+
+export function getLockerV3Contract(_: number, library: Web3Provider, account?: string): Contract {
+  return getContract(LOCKERV3_ADDRESS, IUniswapV3LockerABI, library, account)
 }
 
 export function getTokenContract(tokenAddress: string, library: Web3Provider, account?: string): Contract {

@@ -28,7 +28,8 @@ import RemoveLiquidity from './RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
 import Swap from './Swap'
 import Lock from './Lock'
-import LockService from './LockService'
+import LockV2Pair from './LockV2Pair'
+import LockV3Pair from './LockV3Pair'
 import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
 import Vote from './Vote'
 import VotePage from './Vote/VotePage'
@@ -63,8 +64,6 @@ const BodyWrapper = styled.div`
     padding: 16px;
     padding-top: 2rem;
   `};
-
-  z-index: 1;
 `
 
 const FooterWrapper = styled.div`
@@ -125,7 +124,8 @@ export default function App() {
               <Route exact strict path="/uni/:currencyIdA/:currencyIdB" component={Manage} />
               <Route exact strict path="/vote/:id" component={VotePage} />
               <Route exact strict path="/lock" component={Lock} />
-              <Route exact strict path="/lock/service" component={LockService} />
+              <Route exact strict path="/lock/v2pair" component={LockV2Pair} />
+              <Route exact strict path="/lock/v3pair" component={LockV3Pair} />
               <Route component={RedirectPathToSwapOnly} />
             </Switch>
           </Web3ReactManager>
