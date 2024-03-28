@@ -142,7 +142,8 @@ const extractReason = (err: any) => {
     const match = /with the following reason:(.+)Contract Call:/gmi.exec(err.message.replaceAll('\n', ''))
     if (match)
       return match[1]
-    return err.message.split(/[\.\n]+/)?.[0] ?? err.message
+    // return err.message.split(/[\.\n]+/)?.[0] ?? err.message
+    return err.message.split(/[.\n]+/)?.[0] ?? err.message
 }
 
 function getTickAtSqrtPrice(sqrtPriceX96){
@@ -186,7 +187,7 @@ export default function Lock({ pool, lock } : { pool: Pool, lock: any }) {
 
     const { chainId, library, account } = useActiveWeb3React()
     const [attempting, setAttempting] = useState<string>()
-    const [txHash, setTxHash] = useState<string>('')
+    // const [txHash, setTxHash] = useState<string>('')
     const [error, setError] = useState<string>()
     const [inputError, setInputError] = useState<string>()
 
@@ -249,7 +250,7 @@ export default function Lock({ pool, lock } : { pool: Pool, lock: any }) {
                     summary: `${methodName.toUpperCase()} v3 lock`
                 })
                 tx.wait().then(() => {
-                    setTxHash(tx.hash)
+                    // setTxHash(tx.hash)
                     setAttempting(undefined)
                 })
             }).catch((ex) => {

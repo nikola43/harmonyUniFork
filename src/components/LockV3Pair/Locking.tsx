@@ -170,7 +170,7 @@ export default function Locking() {
     const [defaultTimeUnlock, setDefaultTimeUnlock] = useState<Date>(new Date(Date.now() + 30 * 86400000))
     const [attemptingLock, setAttemptingLock] = useState<boolean>(false)
     const [attemptingApprove, setAttemptingApprove] = useState<boolean>(false)
-    const [txHash, setTxHash] = useState<string>('')
+    // const [txHash, setTxHash] = useState<string>('')
     const [dustRecipient, setDustRecipient] = useState<string>('')
     const [owner, setOwner] = useState<string>('')
     const [additionalCollector, setAdditionalCollector] = useState<string>('')
@@ -194,7 +194,7 @@ export default function Locking() {
                     summary: 'Approve v3 liquidity'
                 })
                 tx.wait().then(() => {
-                    setTxHash(tx.hash)
+                    // setTxHash(tx.hash)
                     setApproved(true)
                     setAttemptingApprove(false)
                 })
@@ -231,7 +231,7 @@ export default function Locking() {
                     summary: 'Lock v3 pair'
                 })
                 tx.wait().then(() => {
-                    setTxHash(tx.hash)
+                    // setTxHash(tx.hash)
                     navigate("success", {
                         pool, reserves, token0, token1, timeUnlock: timeUnlock ?? defaultTimeUnlock
                     })
@@ -246,6 +246,7 @@ export default function Locking() {
             setAttemptingLock(false)
         })
     }, [account, library, chainId, pool, reserves, token0, token1, dustRecipient, owner, additionalCollector, collector, eternally, timeUnlock, defaultTimeUnlock, feeKey, positionManager, addTransaction])
+    // }, [account, library, chainId, pool, reserves, token0, token1, dustRecipient, owner, additionalCollector, collector, eternally, timeUnlock, defaultTimeUnlock, feeKey, positionManager, addTransaction])
 
     useEffect(() => {
         const timer = setInterval(() => setDefaultTimeUnlock(new Date(Date.now() + 30 * 86400000)))
